@@ -16,15 +16,14 @@ class Car(models.Model):
     model = models.CharField(max_length=64)
     registration = models.CharField(max_length=16)
     year = models.IntegerField()
-    owner = models.ForeignKey(Klient, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Klient, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.brand + ' ' + self.model
 
 class Process(models.Model):
     name = models.CharField(max_length=64)
-    description = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
 
     def __str__(self):
         return self.name

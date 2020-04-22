@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from pancar.views import client_creator, car_creator, process_creator
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('client/', client_creator),
+    path('car/', car_creator),
+    path('process/',process_creator),
+
 ]
