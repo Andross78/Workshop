@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__logo {
+        width: 90px;
+        img {
+            width: 100%;
+        }
+    }
+    &__official {
+        position: relative;
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff;
+        text-align: center;
+        &::before {
+            content: '';
+            background-image: url('../icons/header/time.svg');
+            background-size:15px;
+            width: 50px; 
+            height: 50px; 
+            background-repeat: no-repeat; 
+            margin-left: -26px;
+            position: absolute;
+        }
+        span {
+            display: block;
+            font-size: 18px;
+        }
+    }
+    &__phone {
+        display: block;
+        font-size: 18px;
+        font-weight: 700;
+        color: #ffffff;
+        &:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    }
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}

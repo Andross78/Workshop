@@ -1,0 +1,36 @@
+.button {
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: $main-color;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    &_main {
+        margin-top: 67px;
+        width: 300px;
+        height: 50px;
+        font-size: 16px;
+    }
+    &_submit {
+        width: 100%;
+        height: 55px;
+        font-size: 16px;
+    }
+    &_mini {
+        width: 131px;
+        height: 40px;
+        font-size: 14px;
+    }
+    &_download {
+        display: block;
+        margin: 14px auto;
+        width: 300px;
+        height: 50px;
+        background-color: #c70101;
+        border-radius: 5.0px;
+        font-size: 16px;
+    }
+}
