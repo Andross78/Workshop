@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Process
+
+
+@admin.register(Process)
+class ProcessAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price')

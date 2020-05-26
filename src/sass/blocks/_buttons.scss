@@ -8,6 +8,23 @@
     font-size: 12px;
     font-weight: 500;
     text-transform: uppercase;
+    &_login {
+        margin-top: 6px;
+        position: relative;
+        width: 124px;
+        text-align: right;
+        &::before {
+            content: '';
+            background-image: url('../icons/user.svg');
+            background-size:24px;
+            width: 24px; 
+            height: 24px; 
+            background-repeat: no-repeat; 
+            margin-left: -31px;
+            margin-top: -3px;
+            position: absolute;
+        }
+    }
     &_main {
         margin-top: 67px;
         width: 300px;

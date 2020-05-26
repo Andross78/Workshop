@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+<<<<<<< HEAD
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+=======
+from pancar.views import ProcessView
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', ProcessView.as_view(), name='index')
+
+>>>>>>> 2409221... put frontend to django
 ]

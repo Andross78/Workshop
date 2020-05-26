@@ -65,21 +65,6 @@ $(document).ready(function(){
     validateForms('#consultation form');
     validateForms('#order form');
 
-    $('form').submit(function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "mailer/smart.php",
-            data: $(this).serialize()
-        }).done(function() {
-            $(this).find("input").val("");
-
-
-            $('form').trigger('reset');
-        });
-        return false;
-    });
-
     // Smooth scroll and page up
 
     $(window).scroll(function() {

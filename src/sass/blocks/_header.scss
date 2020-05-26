@@ -2,6 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    &__login {
+        margin-top: 33px;
+    }
     &__logo {
         width: 90px;
         img {
