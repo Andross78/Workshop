@@ -1,0 +1,577 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pan Car Serwis</title>
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+</head>
+<body>
+    <section id="up" class="promo">
+        <div class="container">
+            <header class="header">
+                <a href="#" class="header__logo">
+                    <img src="{% static 'icons/logo.png' %}" alt="logo">
+                </a>
+                <div class="header__official">
+                    Godziny pracy serwisu
+                    <span>PN.-PT. | 9:00 - 18:00</span>
+                </div>
+                <div class="header__contacts">
+                    <a href="tel:+48577772800" class="header__phone">+48 577 772 800</a>
+                    <button
+                   data-modal="consultation" class="button">szybki kontakt
+                    </button>
+                </div>
+            </header>
+
+            <div class="promo__wrapper">
+                <h1 class="promo__header">witamy w pan car serwis</h1>
+                <h2 class="promo__subheader">tu dbamy o jakość oferowanych usług</h2>
+
+                <div class="promo__icons">
+                    <div class="promo__icon">
+                        <img src="{% static 'icons/header/motor.svg' %}" alt="motor">
+                        Kompleksowe remonty silników
+                    </div>
+                    <div class="promo__icon">
+                        <img src="{% static 'icons/header/quality.svg' %}" alt="quality">
+                        Duże doświadczenie
+                    </div>
+                    <div class="promo__icon">
+                        <img src="{% static 'icons/header/ontime.svg' %}" alt="ontime">
+                        Szybka realizacja usług
+                    </div>
+                </div>
+
+                <button data-modal="consultation" class="button button_main">umów wizytę</button>
+                <div class="promo__link">
+                    lub
+                    <a href="#catalog">PRZEJDŹ DO LISTY USŁUG</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="pros">
+        <div class="container">
+            <h2 class="title">DLACZEGO WARSZTAT PAN CAR</h2>
+            <div class="pros__wrapper">
+                <div class="pros__item">
+                    <img src="{% static 'icons/pros/pig.svg' %}" alt="pig" class="pros__icon">
+                    <div class="pros__subtitle">Konkurencyjne ceny</div>
+                </div>
+                <div class="pros__item">
+                    <img src="{% static 'icons/pros/calendar.svg' %}" alt="calendar" class="pros__icon pros__icon_animated">
+                    <div class="pros__subtitle">Możliwość rezerwacji online</div>
+                </div>
+                <div class="pros__item">
+                    <img src="{% static 'icons/pros/support.svg' %}" alt="support" class="pros__icon">
+                    <div class="pros__subtitle">Fachowa pomóc</div>
+                </div>
+                <div class="pros__item">
+                    <img src="{% static 'icons/pros/equipment.svg' %}" alt="equipment" class="pros__icon">
+                    <div class="pros__subtitle">Nowoczesne urządzenie</div>
+                </div>
+                <div class="pros__item">
+                    <img src="{% static 'icons/pros/guarantee.svg' %}" alt="guarantee" class="pros__icon">
+                    <div class="pros__subtitle">Gwarancja od 2 mięsięcy</div>
+                </div>
+            </div>
+            <div class="pros__descr">
+                Pan Car Serwis świadczy usługi polegające na naprawie i serwisowaniu pojazdów samochodowych za niewygórowaną i precyzyjnie określoną cenę. Oferujemy usługi motoryzacyjne w miejscowości Warszawa od roku naszego otwarcia w 2019. Nasz sukces polega na zapewnianiu usług najdoskonalszych i jakościowych z zakresu Warsztatów serwisowy.
+            </div>
+        </div>
+    </section>
+
+    <section class="consultation">
+        <div class="container">
+            <h2 class="title title_left">
+                zamów przez nas części zamienne <br>
+                dla swojego auta
+            </h2>
+            <div class="consultation__descr">
+                Prosimy o pozostawienie danych kontaktowych, <br>
+                oddzwonimy najszybciej jak będzie to możliwe.
+            </div>
+            <form id="consultation-form" class="feed-form" action="#">
+                <input name="name" required placeholder="Imię" type="text">
+                <input name="phone" required placeholder="Telefon">
+                <input name="email" required placeholder="E-mail" type="email">
+                <input name="text" placeholder="Informacja dla nas" type="text">
+
+                <button class="button button_submit">zostaw kontakt</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="catalog" id="catalog">
+        <div class="container">
+            <h2 class="title">usługi</h2>
+            <ul class="catalog__tabs">
+                <li class="catalog__tab catalog__tab_active"><div>mechanika auta</div></li>
+                <li class="catalog__tab"><div>serwis klimatyzacji</div></li>
+                <li class="catalog__tab"><div>serwis opon</div></li>
+            </ul>
+
+           <div class="catalog__content catalog__content_active">
+               <div class="catalog-item">
+                   <div class="catalog-item__wrapper">
+                       <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/Wymiana.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Usługi podstawowe</div>
+                            <div class="catalog-item__descr">Wymiana oleju, filtrów, zarówek, klocków hamulcowych itp.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <!--<li>Wymiana oleju i filtra oleju - 50 zł;</li>
+                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
+                            <li>Wymiana filtra paliwa - 50 zł;</li>
+                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            <li>Wymiana klocków hamulcowych <br> przód / tył - 50 / 100 zł;</li>
+                            <li>Wymiana żarówek - od 15 zł;</li>
+                            <li>Wymiana łącznika stabilizatora - 50 zł;</li>
+                            <li>Płyn chłodniczy (100 ml.) - 1 zł;</li>
+                            <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>-->
+                            {% for p in processes %}
+                                <li>{{ p.name }} - {{ p.price }} zł</li>
+                            {% endfor %}
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 15 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/zawieszanie_p%201.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Zawieszenie przednie</div>
+                            <div class="catalog-item__descr">Wymiana elementów zawieszenia - amortyzatorów, tuleji, sprężyn itp.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Замена амортизаторов - 150 zł;</li>
+                            <li>шаровой опоры - od 80 zł;</li>
+                            <li>верхнего рычага - od 100 zł;</li>
+                            <li>нижнего рычага - od 100 zł;</li>
+                            <li>подшипника ступицы - od 100 zł;</li>
+                            <li>втулки стабилизатора - od 100 zł;</li>
+                            <li>передней пружины - 150 zł;</li>
+                            <li>ступицы - od 100 zł;</li>
+                            <li>опоры стоек - 150 zł;</li>
+                            <li>стоек стабилизатора - 50 zł;</li>
+                            <li>ШРУСА / пыльника шруса - od 120 zł;</li>
+                            <li>С.Б. верхнего рычага - 150 zł;</li>
+                            <li>С.Б. нижнего рычага - 150 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 50 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/zawieszenie_t.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Zawieszenie tylne</div>
+                            <div class="catalog-item__descr">Wymiana elementów zawieszenia - amortyzatorów, półosi, sprężyn itp.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Замена заднего амортизатора (1 шт) - od 80 zł;</li>
+                            <li>Замена пружины (1 шт) - od 80 zł;</li>
+                            <li>Замена полуоси (1 шт) - od 100 zł;</li>
+                            <li>Замена задней балки  - od 350 zł;</li>
+                            <li>Замена сайлентблоков задней балки (комплект без снятия балки) / (комплект со снятием балки - <br>140 / 400 zł;</li>
+                            <li>Замена втулок амортизатора (1 шт) - 150 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 80 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/hamulec.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Układ hamulcowy</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Замена передних колодок  - 50 zł;</li>
+                            <li>задних колодок / колодок ручника / в барабанах - 100/100/150 zł;</li>
+                            <li>тормозного суппорта - 100 zł;</li>
+                            <li>тормозного шланга с прокачкой - od 50 zł;</li>
+                            <li>тормозной трубки с прокачкой - od 50 zł;</li>
+                            <li>вакуумного усилителя - od 200 zł;</li>
+                            <li>троса ручного тормоза - od 100 zł;</li>
+                            <li>тормозного барабана - od 70 zł;</li>
+                            <li>Переборка суппорта - 150 zł;</li>
+                            <li>тормозного диска - 75 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 50 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/fuel.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Układ paliwowy</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Замена бензобака - od 300 zł;</li>
+                            <li>Замена топливного насоса (электрический) - od 150 zł;</li>
+                            <li>Замена топливной трубки (магистральной) (1 шт)- od 70 zł;</li>
+                            <li>Замена топливного датчика - 150 zł;</li>
+                            <li>Замена тормозной жидкости - od 150 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 70 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/muffler.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Tłumik</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
+                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
+                            <li>Wymiana filtra paliwa - 50 zł;</li>
+                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            <li>Wymiana klocków hamulcowych <br> przód / tył - 50 / 100 zł;</li>
+                            <li>Wymiana żarówek - od 15 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 50 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/kierownica.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Układ kierowniczy</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
+                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
+                            <li>Wymiana filtra paliwa - 50 zł;</li>
+                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 55 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/silnik.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Silnik</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
+                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
+                            <li>Wymiana filtra paliwa - 50 zł;</li>
+                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 10 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/transmisja.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Transmisja</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
+                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
+                            <li>Wymiana filtra paliwa - 50 zł;</li>
+                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 10 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+           </div>
+           <div class="catalog__content">
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/cooling.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Naprawa klimatyzacji</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Замена радиатора (вентилятора) - 150 zł;</li>
+                            <li>Замена антифриза - od 60 zł;</li>
+                            <li>Замена антифриза с промывкой - od 120 zł;</li>
+                            <li>Замена печки / вентилятора печки- od 350 zł;</li>
+                            <li>Замена датчика температуры - od 100 zł;</li>
+                            <li>Замена датчика масла - 50 zł;</li>
+                            <li>Замена термостата - od 150 zł;</li>
+                            <li>Замена расширительного бачка - od 50 zł;</li>
+                            <li>Замена бачка омывателя стекол - 100 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 50 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+           </div>
+           <div class="catalog__content">
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/opony.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Opony</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
+                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
+                            <li>Wymiana filtra paliwa - 50 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 90 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/felgi.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Felgi</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
+                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
+                            <li>Wymiana filtra paliwa - 50 zł;</li>
+                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            <li>Wymiana klocków hamulcowych <br> przód / tył - 50 / 100 zł;</li>
+                            <li>Wymiana żarówek - od 15 zł;</li>
+                            <li>Wymiana łącznika stabilizatora - 50 zł;</li>
+                            <li>Płyn chłodniczy (100 ml.) - 1 zł;</li>
+                            <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>
+                            <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 100 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+                <div class="catalog-item" style="visibility: hidden;">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="{% static 'img/catalog/felgi.png' %}" alt="olej" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Felgi</div>
+                            <div class="catalog-item__descr">Lorem ipsum dolor sit amet, nam te dictas senserit.</div>
+                            <a href="#" class="catalog-item__link">WIĘCEJ</a>
+                        </div>
+                        <ul class="catalog-item__list">
+                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
+                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
+                            <li>Wymiana filtra paliwa - 50 zł;</li>
+                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            <li>Wymiana klocków hamulcowych <br> przód / tył - 50 / 100 zł;</li>
+                            <li>Wymiana żarówek - od 15 zł;</li>
+                            <li>Wymiana łącznika stabilizatora - 50 zł;</li>
+                            <li>Płyn chłodniczy (100 ml.) - 1 zł;</li>
+                            <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>
+                            <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>
+
+                            <a href="#" class="catalog-item__back">WRÓĆ</a>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__price">od 100 zł.</div>
+                        <button class="button button_mini">NAPRAW</button>
+                    </div>
+                </div>
+           </div>
+           <div class="catalog__download">
+               <img src="{% static 'icons/arrow_download.svg' %}" alt="download" class="catalog__download_img">
+               <button class="button button_download">Pobierz cennik <br> w wersji rosyjskiej</button>
+           </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="title">często zadawane pytania</h2>
+            <div class="faq__item">
+                <div class="faq__text">
+                    <div class="faq__subtitle">Co to jest przegląd techniczny samochodu?</div>
+                    <div class="faq__descr">
+                        Przegląd techniczny auta jest obowiązkowym badaniem stanu technicznego auta. Podczas przeglądu technicznego sprawdzane są najważniejsze układy samochodu. To ma duże znaczenie dla bezpieczeństwa oraz polepszenia walorów użytkowania.
+                    </div>
+                </div>
+            </div>
+            <hr class="faq__hr">
+            <div class="faq__item">
+                <div class="faq__text">
+                    <div class="faq__subtitle">Czy wycenę naprawy uzyskam przez telefon?</div>
+                    <div class="faq__descr">
+                        Wstęną wycenę możesz usyzkać przez telefon, jednak, pełną informacją będziesz miał możliwość uzyskaś po oględzinach przez mechanika.
+                    </div>
+                </div>
+            </div>
+            <hr class="faq__hr">
+            <div class="faq__item">
+                <div class="faq__text">
+                    <div class="faq__subtitle">Czy w warsztacie mogę zapłacić kartą?</div>
+                    <div class="faq__descr">
+                        W warsztacie samochodowym oferujemy płatność również gotówką i kartą.
+                    </div>
+                </div>
+            </div>
+            <hr class="faq__hr">
+            <div class="faq__item">
+                <div class="faq__text">
+                    <div class="faq__subtitle">Ile czasu zajmie naprawa?</div>
+                    <div class="faq__descr">
+                        Drobne naprawy mechaniczne - od 30 do 180 min.;<br>
+                        Średnie naprawy mechaniczne- od 1 do 3 dni;<br>
+                        Istotne naprawy mechaniczne- od 2 mięsięcy.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.974511506538!2d21.238193315796565!3d52.22568087975957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ed3f72cad6523%3A0x5e00f7a74e7d65f1!2sSadowa%204%2C%2005-077%20Warszawa!5e0!3m2!1sru!2spl!4v1589663428777!5m2!1sru!2spl" allowfullscreen></iframe>
+
+        <div class="footer__info">
+            <address class="footer__addr">Sadowa 4, 05-077 Warszawa</address>
+            <a class="footer__phone" href="tel:48577772800">+48 577 772 800</a>
+            <div class="footer__social">
+                <a href="#" class="footer__social-item"><img src="{% static 'icons/facebook.svg' %}" alt="facebook"></a>
+                <a href="https://www.instagram.com/pancarserwis/" class="footer__social-item"><img src="{% static 'icons/instagram.svg' %}" alt="instagram"></a>
+                <a href="#" class="footer__social-item"><img src="{% static 'icons/mail.svg' %}" alt="pinterest"></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="overlay">
+        <div class="modal" id="consultation">
+            <div class="modal__close">&times;</div>
+            <div class="modal__subtitle">Prosimy o wypełnieniu formularzu</div>
+            <div class="modal__descr">oddzwonimy w ciągu 10 minut</div>
+            <form class="feed-form feed-form_mt25" action="#">
+                <input name="name" placeholder="Imię" type="text">
+                <input name="phone" placeholder="Telefon">
+                <input name="email" placeholder="E-mail" type="email">
+
+                <button class="button button_submit">Pozostawić danę</button>
+            </form>
+        </div>
+
+        <div class="modal" id="order">
+            <div class="modal__close">&times;</div>
+            <div class="modal__subtitle">Zamówienie:</div>
+            <div class="modal__descr">Usługi podstawowe</div>
+            <form class="feed-form feed-form_mt25" action="#">
+                <input name="name" required placeholder="Imię" type="text">
+                <input name="phone" required placeholder="Telefon">
+                <input name="email" required placeholder="Ваш E-mail" type="email">
+
+                <button class="button button_submit">Zamówić</button>
+            </form>
+        </div>
+
+        <div class="modal modal_mini" id="thanks">
+            <div class="modal__close">&times;</div>
+            <div class="modal__subtitle">Dziękujemy za pozostawienie danych</div>
+        </div>
+    </div>
+
+    <a href="#up" class="pageup">
+        <img src="{% static 'icons/arrow_up.svg' %}" alt="up">
+    </a>
+
+    <script src='//code.jquery.com/jquery-1.11.0.min.js'></script>
+    <script src='//code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
+    <script type="text/javascript" src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

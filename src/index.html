@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -134,7 +134,9 @@
                             <li>Wymiana łącznika stabilizatora - 50 zł;</li>
                             <li>Płyn chłodniczy (100 ml.) - 1 zł;</li>
                             <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>
-                            <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>
+                            <!--{% for p in processes %}
+                                <li>{{ p.name }} - {{ p.price }}</li>
+                            {% endfor %}-->
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
@@ -149,7 +151,7 @@
                 <div class="catalog-item">
                     <div class="catalog-item__wrapper">
                         <div class="catalog-item__content catalog-item__content_active">
-                            <img src="img/catalog/zawieszanie_p 1.png" alt="olej" class="catalog-item__img">
+                            <img src="img/catalog/zawieszanie_p%201.png" alt="olej" class="catalog-item__img">
                             <div class="catalog-item__subtitle">Zawieszenie przednie</div>
                             <div class="catalog-item__descr">Wymiana elementów zawieszenia - amortyzatorów, tuleji, sprężyn itp.</div>
                             <a href="#" class="catalog-item__link">WIĘCEJ</a> 
@@ -452,6 +454,7 @@
                             <li>Płyn chłodniczy (100 ml.) - 1 zł;</li>
                             <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>
                             <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>
+
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
@@ -566,9 +569,7 @@
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/slick.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
-    <script src="js/jquery.maskedinput.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/script.js"></script>
 </body>
