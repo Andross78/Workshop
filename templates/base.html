@@ -96,12 +96,9 @@
                 Prosimy o pozostawienie danych kontaktowych, <br>
                 oddzwonimy najszybciej jak będzie to możliwe.
             </div>
-            <form id="consultation-form" class="feed-form" action="#">
-                <input name="name" required placeholder="Imię" type="text">
-                <input name="phone" required placeholder="Telefon">
-                <input name="email" required placeholder="E-mail" type="email">
-                <input name="text" placeholder="Informacja dla nas" type="text">
-
+            <form id="consultation-form" class="feed-form" action="#" method="post">
+                {% csrf_token %}
+                {{ form }}
                 <button class="button button_submit">zostaw kontakt</button>
             </form>
         </div>
@@ -126,17 +123,8 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <!--<li>Wymiana oleju i filtra oleju - 50 zł;</li>
-                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
-                            <li>Wymiana filtra paliwa - 50 zł;</li>
-                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
-                            <li>Wymiana klocków hamulcowych <br> przód / tył - 50 / 100 zł;</li>
-                            <li>Wymiana żarówek - od 15 zł;</li>
-                            <li>Wymiana łącznika stabilizatora - 50 zł;</li>
-                            <li>Płyn chłodniczy (100 ml.) - 1 zł;</li>
-                            <li>Olej silnikowy 10w40 1000 ml. - 21 zł;</li>-->
-                            {% for p in processes %}
-                                <li>{{ p.name }} - {{ p.price }} zł</li>
+                            {% for proc in basic_proc %}
+                                <li>{{ proc.name }} - {{ proc.price }} zł</li>
                             {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
@@ -158,19 +146,9 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <li>Замена амортизаторов - 150 zł;</li>
-                            <li>шаровой опоры - od 80 zł;</li>
-                            <li>верхнего рычага - od 100 zł;</li>
-                            <li>нижнего рычага - od 100 zł;</li>
-                            <li>подшипника ступицы - od 100 zł;</li>
-                            <li>втулки стабилизатора - od 100 zł;</li>
-                            <li>передней пружины - 150 zł;</li>
-                            <li>ступицы - od 100 zł;</li>
-                            <li>опоры стоек - 150 zł;</li>
-                            <li>стоек стабилизатора - 50 zł;</li>
-                            <li>ШРУСА / пыльника шруса - od 120 zł;</li>
-                            <li>С.Б. верхнего рычага - 150 zł;</li>
-                            <li>С.Б. нижнего рычага - 150 zł;</li>
+                            {% for proc in front_susp_proc %}
+                                <li>{{ proc }} - {{ proc.price }} zł</li>
+                            {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
@@ -190,12 +168,9 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <li>Замена заднего амортизатора (1 шт) - od 80 zł;</li>
-                            <li>Замена пружины (1 шт) - od 80 zł;</li>
-                            <li>Замена полуоси (1 шт) - od 100 zł;</li>
-                            <li>Замена задней балки  - od 350 zł;</li>
-                            <li>Замена сайлентблоков задней балки (комплект без снятия балки) / (комплект со снятием балки - <br>140 / 400 zł;</li>
-                            <li>Замена втулок амортизатора (1 шт) - 150 zł;</li>
+                            {% for proc in rear_susp_proc %}
+                                <li>{{ proc }} - {{ proc.price }} zł</li>
+                            {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
@@ -215,21 +190,13 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <li>Замена передних колодок  - 50 zł;</li>
-                            <li>задних колодок / колодок ручника / в барабанах - 100/100/150 zł;</li>
-                            <li>тормозного суппорта - 100 zł;</li>
-                            <li>тормозного шланга с прокачкой - od 50 zł;</li>
-                            <li>тормозной трубки с прокачкой - od 50 zł;</li>
-                            <li>вакуумного усилителя - od 200 zł;</li>
-                            <li>троса ручного тормоза - od 100 zł;</li>
-                            <li>тормозного барабана - od 70 zł;</li>
-                            <li>Переборка суппорта - 150 zł;</li>
-                            <li>тормозного диска - 75 zł;</li>
+                            {% for proc in brak_sys_proc %}
+                                <li>{{ proc }} - {{ proc.price }} zl</li>
+                            {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
                     <hr>
-
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 50 zł.</div>
                         <button class="button button_mini">NAPRAW</button>
@@ -244,11 +211,9 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <li>Замена бензобака - od 300 zł;</li>
-                            <li>Замена топливного насоса (электрический) - od 150 zł;</li>
-                            <li>Замена топливной трубки (магистральной) (1 шт)- od 70 zł;</li>
-                            <li>Замена топливного датчика - 150 zł;</li>
-                            <li>Замена тормозной жидкости - od 150 zł;</li>
+                            {% for proc in fuel_sys_proc %}
+                                <li>{{ proc }} - {{ proc.price }} zl</li>
+                            {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
@@ -268,12 +233,9 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
-                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
-                            <li>Wymiana filtra paliwa - 50 zł;</li>
-                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
-                            <li>Wymiana klocków hamulcowych <br> przód / tył - 50 / 100 zł;</li>
-                            <li>Wymiana żarówek - od 15 zł;</li>
+                            {% for proc in silencer_proc %}
+                                <li>{{ proc }} - {{ proc.price }} zł</li>
+                            {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
@@ -293,10 +255,9 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
-                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
-                            <li>Wymiana filtra paliwa - 50 zł;</li>
-                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            {% for proc in sterring_sys_proc %}
+                                <li>{{ proc }} - {{ proc.price }} zl</li>
+                            {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
@@ -316,10 +277,9 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
-                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
-                            <li>Wymiana filtra paliwa - 50 zł;</li>
-                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            {% for proc in engine_proc %}
+                                <li>{{ proc }} - {{ proc.price }} zł</li>
+                            {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>
@@ -339,10 +299,9 @@
                             <a href="#" class="catalog-item__link">WIĘCEJ</a>
                         </div>
                         <ul class="catalog-item__list">
-                            <li>Wymiana oleju i filtra oleju - 50 zł;</li>
-                            <li>Wymiana filtrów powietrza - od 15 zł;</li>
-                            <li>Wymiana filtra paliwa - 50 zł;</li>
-                            <li>Wymiana filtra kabinowego - od 15 zł;</li>
+                            {% for proc in trans_proc %}
+                                <li>{{ proc }} - {{ proc.price }} zł</li>
+                            {% endfor %}
                             <a href="#" class="catalog-item__back">WRÓĆ</a>
                         </ul>
                     </div>

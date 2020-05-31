@@ -34,6 +34,7 @@ $(document).ready(function(){
         })
     });
 
+<<<<<<< HEAD
     function validateForms(form) {
         $(form).validate({
             rules: {
@@ -64,6 +65,8 @@ $(document).ready(function(){
     validateForms('#consultation-form');
     validateForms('#consultation form');
     validateForms('#order form');
+=======
+>>>>>>> develop
 
     // Smooth scroll and page up
 
