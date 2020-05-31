@@ -23,7 +23,15 @@ class Car(models.Model):
 
 class Process(models.Model):
     name = models.CharField(max_length=64)
-    price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    price = models.DecimalField(max_digits=5, decimal_places=1, null=True)
+    category = models.ManyToManyField('Category', related_name='processes')
+
+    def __str__(self):
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=64)
 
     def __str__(self):
         return self.name
