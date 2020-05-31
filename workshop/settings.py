@@ -141,4 +141,5 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'localhost:8000/pancar/'
+LOGIN_REDIRECT_URL = 'http://localhost:8000/pancar/'
+
