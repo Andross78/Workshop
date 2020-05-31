@@ -23,6 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('pancar/', ProcessView.as_view(), name='index'),
-    path('forma/', ProcessView.as_view(), name='forma')
-
-]
+    path('forma/', ProcessView.as_view(), name='forma'),
