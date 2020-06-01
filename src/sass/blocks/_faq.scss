@@ -1,0 +1,31 @@
+.faq {
+    padding-bottom: 55px;
+    &__item {
+        margin-top: 33px;
+        &:nth-child(2) {
+            margin-top: 50px;
+        }
+    }
+    &__text {
+        margin-left: 62px;
+        padding-right: 60px;
+        text-align: center;
+    }
+    &__subtitle {
+        font-size: 18px;
+        font-weight: 700;
+        color: $text-color;
+    }
+    &__descr {
+        font-size: 16px;
+        font-weight: 300;
+        color: $text-color;
+        margin-top: 10px;
+    }
+    &__hr {
+        margin-top: 37px;
+        width: 600px;
+        border-bottom: none;
+        border-color: rgba(232, 232, 232, 0.2);
+    }
+}

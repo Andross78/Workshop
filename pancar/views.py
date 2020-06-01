@@ -1,69 +1,76 @@
+
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
 from django.views import View
+
 from pancar.models import Klient, Car, Process
-# Create your views here.
 
-@csrf_exempt
-def client_creator(request):
-    if request.method == "GET":
-        html = """
-            <form action="#" method="POST">
-                <input required type="text" name="name" placeholder="Name"/>
-                <input required type="text" name="surname" placeholder="Surname"/><br/>
-                <input required type="email" name="email" placeholder="Email"/>
-                <input required type="text" name="phone" placeholder="Phone number"/><br/>
-                <button type="submit">Create</button>
-            </form>
-            """
-        return HttpResponse(html)
 
-    else:
-        name = request.POST.get("name")
-        surname = request.POST.get("surname")
-        email = request.POST.get("email")
-        phone = request.POST.get("phone")
-        if name and surname and email and phone:
-            client = Klient.objects.create(name=name, surname=surname, email=email, phone=phone)
-            return HttpResponse(f'Client {name} {surname} has been successfully added.')
+class ProcessView(View):
 
-@csrf_exempt
-def car_creator(request):
-    if request.method == 'GET':
-        html = """
-            <form action="#" method="POST">
-                <input required type="text" name="brand" placeholder="Car brand"/>
-                <input required type="text" name="model" placeholder="Car model"/><br/>
-                <input required type="text" name="registration" placeholder="Registr. number"/>
-                <input required type="text" name="year" placeholder="Year"/><br/>
-                <button type="submit">Create</button>
-            </form>
-            """
-        return HttpResponse(html)
-    else:
-        brand = request.POST.get("brand")
-        model = request.POST.get("model")
-        registr = request.POST.get("registration")
-        year = request.POST.get("year")
-        if brand and model and registr and year:
-            car = Car.objects.create(brand=brand, model=model, registration=registr, year=year)
-            return HttpResponse(f'Car {brand} {model} has been successfully created.')
+    def get(self, request):
+        processes = Process.objects.all()
+        context = {
+            'processes': processes,
+        }
+        return render(request, 'base.html', context)
 
-@csrf_exempt
-def process_creator(request):
-    if request.method == "GET":
-        html = """
-            <form action="#" method="POST">
-                <input required type="text" name="name" placeholder="Process"/>
-                <input required input type="number" min="0.00" step="0.01" name="price" placeholder="Price"/><br/>
-                <button type="submit">Create</button>
-            </form>
-            """
-        return HttpResponse(html)
-    else:
-        name = request.POST.get('name')
-        price = request.POST.get('price')
-        if name and price:
-            process = Process.objects.create(name=name, price=price)
-            return HttpResponse(f'Process {name}  has been successfully created.')
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
+from django.views import View
+
+from .forms import MessageForm
+from .models import Klient, Car, Process, Category
+
+
+class ProcessView(View):
+    form_class = MessageForm
+    def get(self, request):
+        form = self.form_class()
+        category_basic = Category.objects.get(name='Główne roboty')
+        basic_proc = category_basic.processes.all().order_by('name')
+        front_suspension = Category.objects.get(name='Zawieszenie przednie')
+        front_susp_proc = front_suspension.processes.all().order_by('name')[:10]
+        rear_suspension = Category.objects.get(name='Zawieszenie tylne')
+        rear_susp_proc = rear_suspension.processes.all().order_by('name')
+        braking_system = Category.objects.get(name='Układ hamulcowy')
+        brak_sys_proc = braking_system.processes.all().order_by('name')[:7]
+        fuel_system = Category.objects.get(name='Układ paliwowy')
+        fuel_sys_proc = fuel_system.processes.all().order_by('name')
+        silencer = Category.objects.get(name='Układ wydechowy')
+        silencer_proc = silencer.processes.all().order_by('name')
+        sterring_system = Category.objects.get(name='Układ kierownicy')
+        sterring_sys_proc = sterring_system.processes.all().order_by('name')
+        engine = Category.objects.get(name='Naprawa silnika')
+        engine_proc = engine.processes.all().order_by('name')[:10]
+        transmission = Category.objects.get(name='Skrzynia biegów')
+        trans_proc = transmission.processes.all().order_by('name')[:10]
+        context = {
+            'form': form,
+            'basic_proc': basic_proc,
+            'front_susp_proc': front_susp_proc,
+            'rear_susp_proc': rear_susp_proc,
+            'brak_sys_proc': brak_sys_proc,
+            'fuel_sys_proc': fuel_sys_proc,
+            'silencer_proc': silencer_proc,
+            'sterring_sys_proc': sterring_sys_proc,
+            'engine_proc': engine_proc,
+            'trans_proc': trans_proc,
+        }
+        return render(request, 'base.html', context)
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
+            email = form.cleaned_data['email']
+            info = form.cleaned_data['info']
+            context['name'] = name
+            context['phone'] = phone
+            context['email'] = email
+            context['info'] = info
+        return render(request, 'pancar/forma.html', context)
+
