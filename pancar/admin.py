@@ -1,8 +1,11 @@
 from django.contrib import admin
 
-from .models import Process
+from .models import Process, Category
 
 
 @admin.register(Process)
 class ProcessAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price')
+    ...
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
