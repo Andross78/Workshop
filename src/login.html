@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header class="header header__login">
-            <a href="#" class="header__logo">
+            <a href="index.html" class="header__logo">
                 <img src="icons/login/logo2.png" alt="logo">
             </a>
         </header>
@@ -18,15 +18,27 @@
     <section class="login">
         <div class="container">
             <div class="login__wrapper">
-                <div class="login_title">MAM KONTO</div>
-                <form class="login__form" action="#">
-                    <input name="name" required placeholder="Imię" type="text">
-                    <input name="phone" required placeholder="Telefon">
-                    <input name="email" required placeholder="E-mail" type="email">
-                    <input name="text" placeholder="Informacja dla nas" type="text">
-    
-                    <button class="button button_submit">zostaw kontakt</button>
-                </form>
+                <div class="login__line"></div>
+                <div class="login__in">
+                    <h2>MAM KONTO</h2>
+                    <form class="login-form login-form_in" action="#">
+                        <input name="email" required placeholder="E-mail" type="email">
+                        <input name="password" required placeholder="Hasło" type="text">
+        
+                        <button class="button button_in">zaloguj się</button>
+                        <a href="#">ZAPOMNIAŁEŚ HASŁA?</a>
+                    </form>
+                </div>
+
+                <div class="login__registration">
+                    <h2>NIE MAM KONTA</h2>
+                    <button class="button button_registration">Załóż konto</button>
+                    <p>LUB</p>
+                    <div class="login__oauth">
+                        <button class="button button_google">Załoguj się przez google</button>
+                        <button class="button button_facebook">Załoguj się przez facebook</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
