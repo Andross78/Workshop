@@ -34,6 +34,7 @@ $(document).ready(function(){
         })
     });
 
+<<<<<<< HEAD
     function validateForms(form) {
         $(form).validate({
             rules: {
@@ -64,21 +65,8 @@ $(document).ready(function(){
     validateForms('#consultation-form');
     validateForms('#consultation form');
     validateForms('#order form');
-
-    $('form').submit(function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "mailer/smart.php",
-            data: $(this).serialize()
-        }).done(function() {
-            $(this).find("input").val("");
-
-
-            $('form').trigger('reset');
-        });
-        return false;
-    });
+=======
+>>>>>>> develop
 
     // Smooth scroll and page up
 

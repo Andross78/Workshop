@@ -74,3 +74,8 @@ class ProcessView(View):
             context['info'] = info
         return render(request, 'pancar/forma.html', context)
 
+class LoginSigninView(View):
+    template_name = 'pancar/login.html'
+
+    def get(self, request):
+        return render(request, self.template_name)

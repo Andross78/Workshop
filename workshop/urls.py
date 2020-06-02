@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pancar.views import ProcessView
 from django.views.generic import TemplateView
+
+from pancar.views import ProcessView, LoginSigninView
+
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='login/index.html')),
@@ -24,3 +26,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('pancar/', ProcessView.as_view(), name='index'),
     path('forma/', ProcessView.as_view(), name='forma'),
+    path('login_signin/',LoginSigninView.as_view(), name='login_signin'),
+    ]
