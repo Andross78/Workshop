@@ -17,14 +17,24 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from pancar.views import ProcessView, LoginSigninView
+from pancar.views import (
+                    ProcessView,
+                    LoginSigninView,
+                    SigninView,
+                    # LoginView,
+                    # UserLoginView,
+                    UserLogoutView,
+)
 
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='login/index.html')),
+    path('google_login', TemplateView.as_view(template_name='login/index.html')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('pancar/', ProcessView.as_view(), name='index'),
+    path('', ProcessView.as_view(), name='index'),
     path('forma/', ProcessView.as_view(), name='forma'),
-    path('login_signin/',LoginSigninView.as_view(), name='login_signin'),
+    path('login_signin/', LoginSigninView.as_view(), name='login_signin'),
+    # path('login_signin/', LoginView.as_view(), name='login_signin'),
+    path('signin/', SigninView.as_view(), name='signin'),
+    path('logout/', UserLogoutView.as_view(), name='logout'),
     ]

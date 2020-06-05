@@ -1,26 +1,14 @@
-
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.views import View
-
-from pancar.models import Klient, Car, Process
-
-
-class ProcessView(View):
-
-    def get(self, request):
-        processes = Process.objects.all()
-        context = {
-            'processes': processes,
-        }
-        return render(request, 'base.html', context)
-
+from django import forms
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
+from django.views.generic import FormView
+from django.urls import reverse_lazy
 
-from .forms import MessageForm
+from .forms import MessageForm, UserCreateForm, MyAuthForm
 from .models import Klient, Car, Process, Category
 
 
@@ -66,16 +54,28 @@ class ProcessView(View):
         if form.is_valid():
             name = form.cleaned_data['name']
             phone = form.cleaned_data['phone']
-            email = form.cleaned_data['email']
+            mail = form.cleaned_data['mail']
             info = form.cleaned_data['info']
             context['name'] = name
             context['phone'] = phone
-            context['email'] = email
+            context['mail'] = mail
             context['info'] = info
         return render(request, 'pancar/forma.html', context)
 
-class LoginSigninView(View):
+class LoginSigninView(LoginView):
     template_name = 'pancar/login.html'
+    form = MyAuthForm()
 
-    def get(self, request):
-        return render(request, self.template_name)
+
+class UserLogoutView(LogoutView):
+    ...
+
+
+class SigninView(FormView):
+    form_class = UserCreateForm
+    success_url = reverse_lazy('login_signin')
+    template_name = 'auth/user_form.html'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
