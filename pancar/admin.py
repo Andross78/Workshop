@@ -9,3 +9,4 @@ class ProcessAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    ...

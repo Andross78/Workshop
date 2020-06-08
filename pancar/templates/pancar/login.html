@@ -1,0 +1,54 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoryzacja</title>
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header header__login">
+            <a href="{% url 'index' %}" class="header__logo">
+                <img src="{% static 'icons/login/logo2.png' %}" alt="logo">
+            </a>
+        </header>
+    </div>
+
+    <section class="login">
+        <div class="container">
+            <div class="login__wrapper">
+                <div class="login__line"></div>
+                <div class="login__in">
+                    <h2>MAM KONTO</h2>
+                    <form class="login-form login-form_in" action="#">
+                        <input name="email" required placeholder="E-mail" type="email">
+                        <input name="password" required placeholder="Hasło" type="text">
+        
+                        <button class="button button_in">zaloguj się</button>
+                        <a href="#">ZAPOMNIAŁEŚ HASŁA?</a>
+                    </form>
+                </div>
+
+                <div class="login__registration">
+                    <h2>NIE MAM KONTA</h2>
+                    <button class="button button_registration">Załóż konto</button>
+                    <p>LUB</p>
+                    <div class="login__oauth">
+                        <a href="{% provider_login_url 'google' %}">
+                            <button class="button button_google">Załoguj się przez google</button>
+                        </a>
+                        <a href="{% provider_login_url 'facebook' %}">
+                            <button class="button button_facebook">Załoguj się przez facebook</button>
+                        <a/>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
