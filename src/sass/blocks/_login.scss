@@ -1,0 +1,114 @@
+.login {
+    min-height: 452px;
+    &__wrapper {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        justify-content: space-around;
+        margin-top: 38px;
+        width: 943px;
+        height: 452px;
+        border: 2.0px solid #e8e8e8;
+        h2 {
+            font-size: 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+    }
+    &__help {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: $text-color;
+        .checkbox {
+            &__text {
+                position: relative;
+                top: -21px;
+                padding: 0 0 0 20px;
+            }
+        }
+        a {
+            display: block;
+            color: $text-color;
+        }
+    }
+    &-form {
+        margin-top: 36px;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        input {
+            margin-bottom: 32px;
+            width: 300px;
+            height: 50px;
+            background-color: #e8f0fe;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 300;
+            color: #4b4b4b;
+        }
+        &_create {
+            position: relative;
+            height: 50%;
+            transform: translateY(0%);
+            transition: 0.3s all;
+            &_active {
+                transform: translateY(-100%);
+            }
+        }
+    }
+    &__oauth {
+        position: relative;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(-100%);
+        transition: 0.3s all;
+        &_active {
+            transform: translateY(0%);
+        }
+    }
+    &__registration {
+        position: relative;
+        height: 452px;
+        height: 200%;
+        p {
+            position: relative;
+            margin-top: 28px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: $text-color;
+            &::before {
+                content: '';
+                position: absolute;
+                display: block;
+                width: 113px;
+                top: 11px;
+                left: 11px;
+                border-bottom: 1px solid #e8e8e8;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                width: 113px;
+                top: 11px;
+                right: 11px;
+                border-bottom: 1px solid #e8e8e8;
+            }
+        }
+    }
+}
+
+.line {
+    position: absolute;
+    width: 0px;
+    top: 17px;
+    height: 420px;
+    border: 1px solid #e8e8e8;
+}
