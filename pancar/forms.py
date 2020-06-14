@@ -16,10 +16,3 @@ class MessageForm(forms.Form):
 class UserCreateForm(forms.ModelForm):
     username = forms.CharField(max_length=64, label='', widget=forms.TextInput(attrs={'placeholder': 'Login'}))
     password = forms.CharField(max_length=64, label='', widget=forms.TextInput(attrs={'placeholder': 'Password'}))
-    # class Meta:
-    #     model = User
-    #     fields = ['username','password']
-    #     widgets = {
-    #         'username': forms.TextInput(attrs={'placeholder': 'Username'}),
-    #         'password': forms.PasswordInput(attrs={'placeholder': 'Password'}),
-    #     }

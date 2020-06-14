@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse, redirect
 from django.views import View
@@ -8,7 +7,6 @@ from django.urls import reverse_lazy
 
 from pancar.models import User, Category, Process, Car
 from .forms import CarCreateForm
-# Create your views here.
 
 
 class AccountView(View):
