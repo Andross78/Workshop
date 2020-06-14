@@ -1,0 +1,8 @@
+{% extends 'account/account.html' %}
+
+{% block content %}
+    <h2>Some info about Pancar services</h2>
+    {% for cat in categories %}
+        <a href="{% url 'processes' cat.id %}"><p>{{ cat }}</p></a>
+    {% endfor %}
+{% endblock %}

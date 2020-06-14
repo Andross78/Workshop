@@ -1,27 +1,11 @@
-
-from django.http import HttpResponse
+from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import FormView
+from django.urls import reverse_lazy
 
-from pancar.models import Klient, Car, Process
-
-
-class ProcessView(View):
-
-    def get(self, request):
-        processes = Process.objects.all()
-        context = {
-            'processes': processes,
-        }
-        return render(request, 'base.html', context)
-
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
-from django.views import View
-
-from .forms import MessageForm
-from .models import Klient, Car, Process, Category
+from .forms import MessageForm, UserCreateForm
+from .models import Car, Process, Category
 
 
 class ProcessView(View):
@@ -35,7 +19,7 @@ class ProcessView(View):
         rear_suspension = Category.objects.get(name='Zawieszenie tylne')
         rear_susp_proc = rear_suspension.processes.all().order_by('name')
         braking_system = Category.objects.get(name='Układ hamulcowy')
-        brak_sys_proc = braking_system.processes.all().order_by('name')[:7]
+        brak_sys_proc = braking_system.processes.all().order_by('name')[:8]
         fuel_system = Category.objects.get(name='Układ paliwowy')
         fuel_sys_proc = fuel_system.processes.all().order_by('name')
         silencer = Category.objects.get(name='Układ wydechowy')
@@ -66,16 +50,32 @@ class ProcessView(View):
         if form.is_valid():
             name = form.cleaned_data['name']
             phone = form.cleaned_data['phone']
-            email = form.cleaned_data['email']
+            mail = form.cleaned_data['mail']
             info = form.cleaned_data['info']
             context['name'] = name
             context['phone'] = phone
-            context['email'] = email
+            context['mail'] = mail
             context['info'] = info
         return render(request, 'pancar/forma.html', context)
 
-class LoginSigninView(View):
+class LoginSigninView(LoginView):
     template_name = 'pancar/login.html'
+    form = UserCreateForm
 
-    def get(self, request):
-        return render(request, self.template_name)
+
+class UserLogoutView(LogoutView):
+    ...
+
+
+class SignupView(FormView):
+    form_class = UserCreateForm
+    success_url = reverse_lazy('login_signin')
+    template_name = 'auth/user_form.html'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+
+

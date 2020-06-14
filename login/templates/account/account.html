@@ -1,0 +1,21 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header header__login">
+            <a href="{% url 'index' %}" class="header__logo">
+                <img src="{% static 'icons/login/logo2.png' %}" alt="logo">
+            </a>
+        </header>
+    </div>
+    <a href="{% url 'profile' %}">Profil</a>
+    <a href="{% url 'car' %}">Samochod</a>
+    <a href="{% url 'servises' %}">Uslugi</a>
+    <a href="{% url 'basket' %}">Kosz</a>
+    {% block content %}
+    {% endblock %}
+</body>
