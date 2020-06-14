@@ -1,0 +1,10 @@
+{% extends 'account/account.html' %}
+
+{% block content %}<br>
+    <ul>
+    {% for proc in processes %}
+        <li class="servises">{{ proc }} - od {{ proc.price }} zl</li><button>Zamow</button><br>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

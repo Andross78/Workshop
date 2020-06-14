@@ -1,15 +1,11 @@
-from django import forms
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
 from django.views import View
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 
-from .forms import MessageForm, UserCreateForm, MyAuthForm
-from .models import Klient, Car, Process, Category
+from .forms import MessageForm, UserCreateForm
+from .models import Car, Process, Category
 
 
 class ProcessView(View):
@@ -23,7 +19,7 @@ class ProcessView(View):
         rear_suspension = Category.objects.get(name='Zawieszenie tylne')
         rear_susp_proc = rear_suspension.processes.all().order_by('name')
         braking_system = Category.objects.get(name='Układ hamulcowy')
-        brak_sys_proc = braking_system.processes.all().order_by('name')[:7]
+        brak_sys_proc = braking_system.processes.all().order_by('name')[:8]
         fuel_system = Category.objects.get(name='Układ paliwowy')
         fuel_sys_proc = fuel_system.processes.all().order_by('name')
         silencer = Category.objects.get(name='Układ wydechowy')
@@ -64,14 +60,14 @@ class ProcessView(View):
 
 class LoginSigninView(LoginView):
     template_name = 'pancar/login.html'
-    form = MyAuthForm()
+    form = UserCreateForm
 
 
 class UserLogoutView(LogoutView):
     ...
 
 
-class SigninView(FormView):
+class SignupView(FormView):
     form_class = UserCreateForm
     success_url = reverse_lazy('login_signin')
     template_name = 'auth/user_form.html'
@@ -79,3 +75,7 @@ class SigninView(FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+
+

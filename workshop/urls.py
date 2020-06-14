@@ -20,10 +20,20 @@ from django.views.generic import TemplateView
 from pancar.views import (
                     ProcessView,
                     LoginSigninView,
-                    SigninView,
-                    # LoginView,
-                    # UserLoginView,
+                    SignupView,
                     UserLogoutView,
+)
+from user_account.views import (
+                    AccountView,
+                    AccountProfileView,
+                    AccountCarView,
+                    CarCreateView,
+                    AccountServisesView,
+                    AccountBasketView,
+                    ProcessesView,
+                    ProfileUpdateView,
+                    CarDetailView,
+#
 )
 
 
@@ -34,7 +44,15 @@ urlpatterns = [
     path('', ProcessView.as_view(), name='index'),
     path('forma/', ProcessView.as_view(), name='forma'),
     path('login_signin/', LoginSigninView.as_view(), name='login_signin'),
-    # path('login_signin/', LoginView.as_view(), name='login_signin'),
-    path('signin/', SigninView.as_view(), name='signin'),
+    path('signin/', SignupView.as_view(), name='signin'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
+    path('account/', AccountView.as_view(), name='account'),
+    path('profile/', AccountProfileView.as_view(), name='profile'),
+    path('profile_update/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
+    path('user_car/', AccountCarView.as_view(), name='car'),#lista wszystkich
+    path('car_create/', CarCreateView.as_view(), name='car_create'),
+    path('car_details/<int:pk>/', CarDetailView.as_view(), name='car_details'),
+    path('user_servises/', AccountServisesView.as_view(), name='servises'),
+    path('processes/<int:category_id>', ProcessesView.as_view(), name='processes'),
+    path('basket/',AccountBasketView.as_view(), name='basket'),
     ]
