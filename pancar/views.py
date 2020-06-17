@@ -59,7 +59,7 @@ class ProcessView(View):
         return render(request, 'pancar/forma.html', context)
 
 class LoginSigninView(LoginView):
-    template_name = 'pancar/login.html'
+    template_name = 'pancar/login_v_2.html'
     form = UserCreateForm
 
 
@@ -70,7 +70,7 @@ class UserLogoutView(LogoutView):
 class SignupView(FormView):
     form_class = UserCreateForm
     success_url = reverse_lazy('login_signin')
-    template_name = 'auth/user_form.html'
+    template_name = 'auth/registration.html'
 
     def form_valid(self, form):
         form.save()
