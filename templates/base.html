@@ -20,14 +20,28 @@
                 </div>
                 <div class="header__contacts">
                     <a href="tel:+48577772800" class="header__phone">+48 577 772 800</a>
-                    <button
-                   data-modal="consultation" class="button">szybki kontakt
-                    </button>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}?next={{ request.get_full_path }}">
+                            <button class="button button_login">wyloguj sie</button>
+                        </a>
+                        <a href="{% url 'profile' %}">
+                            <button class="button button_login">moje konto</button>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login_signin' %}">
+                            <button class="button button_login">moje konto</button>
+                        </a>
+                    {% endif %}
                 </div>
             </header>
 
             <div class="promo__wrapper">
-                <h1 class="promo__header">witamy w pan car serwis</h1>
+                <h1 class="promo__header">witamy w pan car serwis </h1><br/>
+                <h1 class="promo__header">
+                    {% if user.is_authenticated %}
+                    {{ user }}
+                    {% endif %}
+                </h1>
                 <h2 class="promo__subheader">tu dbamy o jakość oferowanych usług</h2>
 
                 <div class="promo__icons">

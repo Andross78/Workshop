@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sslserver',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pancar',
     'allauth',
+    'user_account',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
     'login',
 ]
 
@@ -80,15 +83,15 @@ WSGI_APPLICATION = 'workshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'HOST': '127.0.0.1',
-        'NAME': 'pancar',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': 'postgres',
-        'PASSWORD': 'coderslab',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'HOST': '127.0.0.1',
+#         'NAME': 'pancar',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'USER': 'postgres',
+#         'PASSWORD': 'coderslab',
+#     }
+# }
 
 
 # Password validation
@@ -113,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pl-pl'
 
 TIME_ZONE = 'UTC'
 
@@ -140,4 +143,19 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'http://localhost:8000/pancar/'
+LOGIN_REDIRECT_URL = 'http://localhost:8000/profile/'
+
+AUTH_USER_MODEL = 'pancar.User'
+
+DATABASES= {
+    'default':
+        {
+           'ENGINE': 'django.db.backends.sqlite3',
+           'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        }
+}
+
+EMAIL_HOST = "mail.smtpbucket.com"
+EMAIL_PORT = "8025"
+DEFAULT_FROM_EMAIL="Pancar<noreply@pancar.pl>"
+

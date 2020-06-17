@@ -1,0 +1,13 @@
+{% extends 'account/account.html' %}
+
+{% block content %}
+    <h2>Some info about Customer</h2>
+        {% if user.is_authenticated %}
+            <p>Imie - {{ user.first_name }}</p>
+            <p>Nazwisko - {{ user.last_name }}</p>
+            <p>Username - {{ user }}</p>
+
+            <a href="{% url 'profile_update' user.pk%}">Uzupelnij profil</a>
+
+        {% endif %}
+{% endblock %}
