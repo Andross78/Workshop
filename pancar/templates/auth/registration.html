@@ -10,8 +10,8 @@
 <body>
     <div class="container">
         <header class="header header__login">
-            <a href="index.html" class="header__logo">
-                <img src="icons/login/logo2.png" alt="logo">
+            <a href="{% url 'index' %}" class="header__logo">
+                <img src="{% static 'icons/login/logo2.png' %}" alt="logo">
             </a>
         </header>
     </div>
@@ -22,10 +22,9 @@
                 <div class="line"></div>
                 <div class="registration__form">
                     <h2>ZAREJESTRUJ SIĘ</h2>
-                    <form class="registration-form" action="#">
-                        <input name="user_login_id" required placeholder="E-mail" type="email">
-                        <input name="id_password" required placeholder="Hasło" type="text">
-        
+                    <form class="registration-form" method="post">
+                        {% csrf_token %}
+                        {{ form }}
                         <button class="button button_in">Załóż konto</button>
                     </form>
                     <div class="registration__terms">

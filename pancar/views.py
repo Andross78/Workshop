@@ -4,7 +4,7 @@ from django.views import View
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 
-from .forms import MessageForm, UserCreateForm
+from .forms import MessageForm, UserCreateForm, UserLoginForm
 from .models import Car, Process, Category
 
 
@@ -59,8 +59,7 @@ class ProcessView(View):
         return render(request, 'pancar/forma.html', context)
 
 class LoginSigninView(LoginView):
-    template_name = 'pancar/login_v_2.html'
-    form = UserCreateForm
+    template_name = 'pancar/login_v_3.html'
 
 
 class UserLogoutView(LogoutView):

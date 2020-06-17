@@ -53,6 +53,6 @@ class Cart(models.Model):
 
     def confirm(self):
         # send main
-        # zamiana statusu
+        # zmiana statusu
         # :)
         pass

@@ -24,10 +24,9 @@
                 <div class="line"></div>
                 <div class="login__in">
                     <h2>MAM KONTO</h2>
-                    <form class="login-form login-form_in" action="#">
+                    <form class="login-form login-form_in" method="post">
                         {% csrf_token %}
-                        {{ form.username }}<br/>
-                        {{ form.password }}
+                        {{ form }}
                         <button class="button button_in">zaloguj się</button>
                     </form>
                     <div class="login__help">
@@ -41,7 +40,7 @@
 
                 <div class="login__registration">
                     <h2>NIE MAM KONTA</h2>
-                    <div class="login__oauth login__oauth_active">
+                    <div class="login__oauth">
                         <form action="{% url 'signin' %}">
                             <button class="button button_registration">Załóż konto</button>
                         </form>
@@ -53,11 +52,6 @@
                             <button class="button button_facebook">Załoguj się przez facebook</button>
                         <form/>
                     </div>
-                    <form class="login-form login-form_create">
-                        <input name="email_registration" required placeholder="E-mail" type="email">
-                        <input name="password_registration" required placeholder="Hasło" type="text">
-                        <button class="button button_create">Załóż konto</button>
-                    </form>
                 </div>
             </div>
         </div>
