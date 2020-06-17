@@ -1,10 +1,15 @@
 {% extends 'account/account.html' %}
 
 {% block content %}<br>
-    <ul>
-    {% for proc in processes %}
-        <li class="servises">{{ proc }} - od {{ proc.price }} zl</li><button>Zamow</button><br>
-    {% endfor %}
-    </ul>
+    <div>
+        {% for proc in processes %}
+            <form method="post">
+                {% csrf_token %}
+                <span style="width: 280px; display: inline-block;">{{ proc.name }} - od {{ proc.price }} zl</span>
+                <input type="hidden" name="pid" value="{{proc.id}}" />
+                <input class="btn btn-success" type="submit" value="Dodaj" />
+            </form>
+        {% endfor %}
+    </div>
 
 {% endblock %}

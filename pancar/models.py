@@ -5,6 +5,14 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     phone = models.CharField(max_length=20)
 
+    def get_cart(self):
+        try:
+            cart = Cart.objects.get(user=self)
+        except Exception as e:
+            cart = Cart.objects.create(user=self)
+        return cart
+
+
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 
@@ -34,3 +42,17 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='carts')
+    process = models.ManyToManyField(Process, related_name='carts')
+
+    def __str__(self):
+        return "Cart of {}, #{}".format(User, self.id)
+
+    def confirm(self):
+        # send main
+        # zamiana statusu
+        # :)
+        pass

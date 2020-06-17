@@ -1,6 +1,21 @@
 {% extends 'account/account.html' %}
 
 {% block content %}
-    <h2>Zamowione uslugi</h2>
-
+    <div>
+        W koszyku:<hr/>
+        {% for proc in cart.process.all %}
+            <form method="post" action="">
+                {% csrf_token %}
+                <span style="width: 280px; display: inline-block;">{{ proc }}</span>
+                <input type="hidden" name="pid" value="{{ proc.id }}" />
+                <input  type="submit" value="Usuń" />
+            </form>
+            {% if forloop.last %}
+                <hr/>
+                <a href="/" >Do kasy &gt;&gt;&gt;</a>
+            {% endif %}
+        {% empty %}
+            Nie wachaj się, dodaj coś!
+        {% endfor %}
+    </div>
 {% endblock %}

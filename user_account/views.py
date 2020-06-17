@@ -5,17 +5,14 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 
-from pancar.models import User, Category, Process, Car
-from .forms import CarCreateForm
+from pancar.models import User, Category, Process, Car, Cart
+from .forms import CarCreateForm, CartCreateForm
 
 
 class AccountView(View):
     template_name = 'account/account.html'
     def get(self, request):
         return render(request, self.template_name)
-
-    def post(self, request):
-        pass
 
 
 class AccountProfileView(View):
@@ -24,8 +21,6 @@ class AccountProfileView(View):
     def get(self, request):
         return render(request, self.template_name)
 
-    def post(self, request):
-        pass
 
 class ProfileUpdateView(UpdateView):
     model = User
@@ -75,18 +70,19 @@ class CarDetailView(View):
 
 class AccountServisesView(View):
     template_name = 'account/servises.html'
+
     def get(self, request):
         categories = Category.objects.all().order_by('name')
-        process = Process.objects.all()
         context = {
             'categories': categories,
-            'process': process,
         }
         return render(request, self.template_name, context)
 
 
 class ProcessesView(View):
     template_name = 'account/processes.html'
+    success_url = 'basket'
+
     def get(self, request, category_id):
         category = Category.objects.get(id=category_id)
         processes = category.processes.all().order_by('name')
@@ -95,8 +91,22 @@ class ProcessesView(View):
         }
         return render(request, self.template_name, context)
 
+    def post(self, request, *args, **kwargs):
+        # user = User.objects.get(pk=self.request.user.id)
+        user = self.request.user
+        cart = user.get_cart()
+        process_id = int(request.POST['pid'])
+        process = Process.objects.get(id=process_id)
+        cart.process.add(process)
+        return HttpResponseRedirect(reverse(self.success_url))
+
 
 class AccountBasketView(View):
     template_name = 'account/basket.html'
     def get(self, request):
-        return render(request, self.template_name)
+        user = User.objects.get(pk=self.request.user.id)
+        cart = Cart.objects.get(user=user)
+        context = {
+            'cart': cart,
+        }
+        return render(request, self.template_name, context)
