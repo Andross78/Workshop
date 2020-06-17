@@ -15,12 +15,45 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pancar.views import ProcessView
 from django.views.generic import TemplateView
 
+from pancar.views import (
+                    ProcessView,
+                    LoginSigninView,
+                    SignupView,
+                    UserLogoutView,
+)
+from user_account.views import (
+                    AccountView,
+                    AccountProfileView,
+                    AccountCarView,
+                    CarCreateView,
+                    AccountServisesView,
+                    AccountBasketView,
+                    ProcessesView,
+                    ProfileUpdateView,
+                    CarDetailView,
+                    # addToCart,
+
+)
+
+
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='login/index.html')),
+    path('google_login', TemplateView.as_view(template_name='login/index.html')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('pancar/', ProcessView.as_view(), name='index'),
+    path('', ProcessView.as_view(), name='index'),
     path('forma/', ProcessView.as_view(), name='forma'),
+    path('login_signin/', LoginSigninView.as_view(), name='login_signin'),
+    path('signin/', SignupView.as_view(), name='signin'),
+    path('logout/', UserLogoutView.as_view(), name='logout'),
+    path('account/', AccountView.as_view(), name='account'),
+    path('profile/', AccountProfileView.as_view(), name='profile'),
+    path('profile_update/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
+    path('user_car/', AccountCarView.as_view(), name='car'),
+    path('car_create/', CarCreateView.as_view(), name='car_create'),
+    path('car_details/<int:pk>/', CarDetailView.as_view(), name='car_details'),
+    path('user_servises/', AccountServisesView.as_view(), name='servises'),
+    path('processes/<int:category_id>', ProcessesView.as_view(), name='processes'),
+    path('basket/', AccountBasketView.as_view(), name='basket'),
+    ]

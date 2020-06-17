@@ -34,51 +34,6 @@ $(document).ready(function(){
         })
     });
 
-    function validateForms(form) {
-        $(form).validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                phone: "required",
-                email: {
-                    required: true,
-                    email: true
-                }
-            },
-            messages: {
-                name: {
-                    required: "Введите свое имя",
-                    minlength: jQuery.validator.format("Введите {0} символа")
-                  },
-                phone: "Введите свой номер телефона",
-                email: {
-                required: "Введите свою почту",
-                email: "Неправильно введен адрес почты"
-                }
-            }
-        });
-    };
-
-    validateForms('#consultation-form');
-    validateForms('#consultation form');
-    validateForms('#order form');
-
-    $('form').submit(function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "mailer/smart.php",
-            data: $(this).serialize()
-        }).done(function() {
-            $(this).find("input").val("");
-
-
-            $('form').trigger('reset');
-        });
-        return false;
-    });
 
     // Smooth scroll and page up
 
