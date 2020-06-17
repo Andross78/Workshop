@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoryzacja</title>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header header__login">
+            <a href="index.html" class="header__logo">
+                <img src="icons/login/logo2.png" alt="logo">
+            </a>
+        </header>
+    </div>
+
+    <section class="login">
+        <div class="container">
+            <div class="login__wrapper">
+                <div class="line"></div>
+                <div class="login__in">
+                    <h2>MAM KONTO</h2>
+                    <form class="login-form login-form_in" action="#">
+                        <input name="user_login_id" required placeholder="E-mail" type="email">
+                        <input name="id_password" required placeholder="Hasło" type="text">
+        
+                        <button class="button button_in">zaloguj się</button>
+                    </form>
+                    <div class="login__help">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember_me" checked="checked">  
+                            <div class="checkbox__text">Zapamiętaj mnie</div>
+                        </label>
+                        <a href="#">Zapomniałeś hasła?</a>
+                    </div>
+                </div>
+
+                <div class="login__registration">
+                    <h2>NIE MAM KONTA</h2>
+                    <div class="login__oauth login__oauth_active">
+                        <form action="registration.html">
+                            <button class="button button_registration">Załóż konto</button>
+                        </form>
+                        <p>LUB</p>
+                        <button class="button button_google">Załoguj się przez google</button>
+                        <button class="button button_facebook">Załoguj się przez facebook</button>
+                    </div>
+                    <form class="login-form login-form_create">
+                        <input name="email_registration" required placeholder="E-mail" type="email">
+                        <input name="password_registration" required placeholder="Hasło" type="text">
+        
+                        <button class="button button_create">Załóż konto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
