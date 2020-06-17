@@ -33,6 +33,7 @@ from user_account.views import (
                     ProcessesView,
                     ProfileUpdateView,
                     CarDetailView,
+                    # addToCart,
 
 )
 
@@ -49,10 +50,10 @@ urlpatterns = [
     path('account/', AccountView.as_view(), name='account'),
     path('profile/', AccountProfileView.as_view(), name='profile'),
     path('profile_update/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
-    path('user_car/', AccountCarView.as_view(), name='car'),#lista wszystkich
+    path('user_car/', AccountCarView.as_view(), name='car'),
     path('car_create/', CarCreateView.as_view(), name='car_create'),
     path('car_details/<int:pk>/', CarDetailView.as_view(), name='car_details'),
     path('user_servises/', AccountServisesView.as_view(), name='servises'),
     path('processes/<int:category_id>', ProcessesView.as_view(), name='processes'),
-    path('basket/',AccountBasketView.as_view(), name='basket'),
+    path('basket/', AccountBasketView.as_view(), name='basket'),
     ]
