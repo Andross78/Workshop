@@ -26,7 +26,8 @@
                     <h2>MAM KONTO</h2>
                     <form class="login-form login-form_in" method="post">
                         {% csrf_token %}
-                        {{ form }}
+                        {{ form.username }}
+                        {{ form.password }}
                         <button class="button button_in">zaloguj się</button>
                     </form>
                     <div class="login__help">
@@ -34,7 +35,7 @@
                             <input type="checkbox" name="remember_me" checked="checked">  
                             <div class="checkbox__text">Zapamiętaj mnie</div>
                         </label>
-                        <a href="#">Zapomniałeś hasła?</a>
+                        <a href="{% url 'reset_password' %}">Zapomniałeś hasła?</a>
                     </div>
                 </div>
 
