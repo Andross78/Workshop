@@ -26,7 +26,8 @@
                     <h2>MAM KONTO</h2>
                     <form class="login-form login-form_in" method="post">
                         {% csrf_token %}
-                        {{ form }}
+                        {{ form.username }}
+                        {{ form.password }}
                         <button class="button button_in">zaloguj się</button>
                     </form>
                     <div class="login__help">

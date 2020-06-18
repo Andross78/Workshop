@@ -108,7 +108,7 @@ class AccountBasketView(View):
     def get(self, request):
         user = User.objects.get(pk=self.request.user.id)
         cart = user.get_cart()
-        cart = Cart.objects.get(user=user)
+
         context = {
             'cart': cart,
         }
