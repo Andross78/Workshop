@@ -5,6 +5,9 @@
     &__login {
         margin-top: 33px;
     }
+    &__buttons {
+        display: flex;
+    }
     &__logo {
         width: 90px;
         img {

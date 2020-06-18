@@ -15,6 +15,12 @@ $(document).ready(function(){
         });
     };
 
+    $('ul.account__tabs').on('click', 'li:not(.account__tab_active)', function() {
+        $(this)
+          .addClass('account__tab_active').siblings().removeClass('account__tab_active')
+          .closest('div.container').find('div.account__content').removeClass('account__content_active').eq($(this).index()).addClass('account__content_active');
+    });
+
     toggleSlide('.catalog-item__link');
     toggleSlide('.catalog-item__back');
 

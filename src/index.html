@@ -19,9 +19,9 @@
                 </div>
                 <div class="header__contacts">
                     <a href="tel:+48577772800" class="header__phone">+48 577 772 800</a>
-                    <a href="{% url 'login_signin' %}">
-                        <button class="button button_login">moje konto</button>
-                    </a>
+                    <form action="user.html" method="GET">
+                        <button class="button button_login">konto</button>
+                    </form>
                 </div>
             </header>
 
@@ -465,10 +465,6 @@
                         <button class="button button_mini">NAPRAW</button>
                     </div>
                 </div>
-           </div>
-           <div class="catalog__download">
-               <img src="icons/arrow_download.svg" alt="download" class="catalog__download_img">
-               <button class="button button_download">Pobierz cennik <br> w wersji rosyjskiej</button>
            </div>
         </div>
     </section>
