@@ -104,16 +104,16 @@ class ProcessesView(View):
 class AccountBasketView(View):
     template_name = 'account/basket.html'
     success_url = ('basket')
+
     def get(self, request):
         user = User.objects.get(pk=self.request.user.id)
+        cart = user.get_cart()
         cart = Cart.objects.get(user=user)
-        if cart:
-            context = {
-                'cart': cart,
-            }
-            return render(request, self.template_name, context)
-        else:
-            return render(request, self.template_name)
+        context = {
+            'cart': cart,
+        }
+        return render(request, self.template_name, context)
+
     def post(self, request, *args, **kwargs):
         user = self.request.user
         cart = Cart.objects.get(user=user)
