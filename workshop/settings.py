@@ -146,11 +146,11 @@ AUTH_USER_MODEL = 'pancar.User'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = 'wdsasha22@gmail.com'
+EMAIL_HOST_USER = 'androsovwork@gmail.com'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_POSR = 587
 # EMAIL_PORT = "8025"
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = 'AnastasiyaA'
+EMAIL_HOST_PASSWORD = 'mvvhoofipaafouni'
 DEFAULT_FROM_EMAIL = "Pancar<noreply@pancar.pl>"
 
