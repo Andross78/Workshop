@@ -140,17 +140,17 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'http://localhost:8000/profile/'
+LOGIN_REDIRECT_URL = '/profile/'
 
 AUTH_USER_MODEL = 'pancar.User'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.smtp.EmailBackend'
 EMAIL_HOST_USER = 'androsovwork@gmail.com'
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_POSR = 587
+EMAIL_PORT = 587
 # EMAIL_PORT = "8025"
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = 'mvvhoofipaafouni'
-DEFAULT_FROM_EMAIL = "Pancar<noreply@pancar.pl>"
+EMAIL_HOST_PASSWORD = 'Superb4884'
+DEFAULT_FROM_EMAIL = "androsovwork@gmail.com"
 
