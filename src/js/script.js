@@ -45,6 +45,10 @@ $(document).ready(function(){
         })
     });
 
+    $('[data-modal=car]').on('click', function() {
+        $('.overlay, #car').fadeIn('slow');
+    });
+
     // Smooth scroll and page up
 
     $(window).scroll(function() {
@@ -62,5 +66,5 @@ $(document).ready(function(){
     });
 
     new WOW().init();
-    
+
 });

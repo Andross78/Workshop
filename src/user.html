@@ -24,6 +24,22 @@
         </header>
     </div>
 
+    <div class="overlay">
+        <div class="modal" id="car">
+            <div class="modal__close">&times;</div>
+            <div class="modal__subtitle">Dodaj nowy samochód</div>
+            <form class="feed-form feed-form_mt25" action="#">
+                <input name="name" placeholder="Producent" type="text">
+                <input name="name" placeholder="Rok" type="text">
+                <input name="name" placeholder="Model" type="text">
+                <input name="name" placeholder="Ostatni przegłąd (opcjonalnie)" type="date">
+                <input name="name" placeholder="Ubezpieczenie ważne do (opcjonalnie)" type="date">
+
+                <button class="button button_submit">dodaj</button>
+            </form>
+        </div>
+    </div>
+
     <section class="account" id="account">
         <div class="container">
             <ul class="account__tabs">
@@ -43,14 +59,14 @@
                     </form>
                     <button class="button button_save">zapisz zmiany</button>
 
-                    <div class="account-item__car_none" style="display: none;">
-                        <h2 class="">Moje auta</h2>
+                    <div class="account-item__car_none">
+                        <h2 class="account-item__title">Moje auta</h2>
                         <div class="account-item__subtitle">Obecnie nie masz żadnych samochodów <br>
                         dodanych do swojego konta.</div>
-                        <button class="button_car">+ dodaj auto</button>
+                        <button data-modal="car" class="button_car">+ dodaj auto</button>
                     </div>
 
-                    <div class="account-item__car" >
+                    <div class="account-item__car" style="display: none;">
                         <h2 class="account-item__title account-item__title_car">Moje auta</h2>
                         <div class="account-item__wrapper">
                             <div class="account-item__img">
@@ -71,7 +87,7 @@
                                 </div>
                             </div>
                             <form action="#" method="GET">
-                                <button class="button_car">+ dodaj kolejne auto</button>
+                                <button data-modal="car" class="button_car button_car_0">+ dodaj kolejne auto</button>
                             </form>
                         </div>
                     </div>
