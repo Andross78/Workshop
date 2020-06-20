@@ -1,21 +1,48 @@
 {% load static %}
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User account</title>
     <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
 </head>
-
 <body>
+
     <div class="container">
         <header class="header header__login">
             <a href="{% url 'index' %}" class="header__logo">
                 <img src="{% static 'icons/login/logo2.png' %}" alt="logo">
             </a>
+            <div class="header__buttons">
+                <a href="{% url 'basket' %}">
+                    <button class="button button_login">kosz</button>
+                </a>
+                <a href="{% url 'logout' %}?next={{ request.get_full_path }}">
+                            <button class="button button_logout"></button>
+                </a>
+            </div>
         </header>
     </div>
-    <a href="{% url 'profile' %}">Profil</a>
-    <a href="{% url 'car' %}">Samochod</a>
-    <a href="{% url 'servises' %}">Uslugi</a>
-    <a href="{% url 'basket' %}">Kosz</a>
+
+<body>
+    <div class="container">
+        <ul class="account__tabs">
+            <li class="account__tab account__tab_active"><a href="{% url 'profile' %}">moje dane</a></li>
+            <li class="account__tab"><a href="#">historia</a></li>
+            <li class="account__tab"><a href="{% url 'servises' %}">inforgrafika</a></li>
+        </ul>
+    </div>
+
+
     {% block content %}
+
     {% endblock %}
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
+
+</html>

@@ -1,4 +1,9 @@
 $(document).ready(function(){ 
+
+    $('.button_reset').click(function(event) {
+        alert("Potwierdzenie zresetowania hasła zostało wysłane");
+    });
+
     $('ul.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function() {
         $(this)
           .addClass('catalog__tab_active').siblings().removeClass('catalog__tab_active')
@@ -14,6 +19,12 @@ $(document).ready(function(){
             })
         });
     };
+
+    $('ul.account__tabs').on('click', 'li:not(.account__tab_active)', function() {
+        $(this)
+          .addClass('account__tab_active').siblings().removeClass('account__tab_active')
+          .closest('div.container').find('div.account__content').removeClass('account__content_active').eq($(this).index()).addClass('account__content_active');
+    });
 
     toggleSlide('.catalog-item__link');
     toggleSlide('.catalog-item__back');
@@ -34,7 +45,6 @@ $(document).ready(function(){
         })
     });
 
-
     // Smooth scroll and page up
 
     $(window).scroll(function() {
@@ -52,4 +62,5 @@ $(document).ready(function(){
     });
 
     new WOW().init();
-  });
+    
+});

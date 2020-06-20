@@ -144,13 +144,13 @@ LOGIN_REDIRECT_URL = '/profile/'
 
 AUTH_USER_MODEL = 'pancar.User'
 
-
+haslo = 1
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = 'wdsasha22@gmail.com'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 # EMAIL_PORT = "8025"
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = haslo
+EMAIL_HOST_PASSWORD = 'AnastasiyaA'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
