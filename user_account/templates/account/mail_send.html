@@ -1,0 +1,10 @@
+{% extends 'account/account.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Wyslij</button>
+    </form>
+
+{% endblock %}

@@ -34,7 +34,7 @@ from user_account.views import (
                     ProcessesView,
                     ProfileUpdateView,
                     CarDetailView,
-                    # addToCart,
+                    OrderMailView,
 
 )
 
@@ -63,4 +63,5 @@ urlpatterns = [
     path('user_servises/', AccountServisesView.as_view(), name='servises'),
     path('processes/<int:category_id>', ProcessesView.as_view(), name='processes'),
     path('basket/', AccountBasketView.as_view(), name='basket'),
+    path('order/', OrderMailView.as_view(), name='order'),
     ]

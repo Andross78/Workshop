@@ -25,7 +25,7 @@ SECRET_KEY = '5jq8-v4=fy36kb!gy)pxi_15ck+cm5vu&rb-q%mavu!jgo90t@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -145,12 +145,12 @@ LOGIN_REDIRECT_URL = '/profile/'
 AUTH_USER_MODEL = 'pancar.User'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.smtp.EmailBackend'
-EMAIL_HOST_USER = 'androsovwork@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'wdsasha22@gmail.com'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 # EMAIL_PORT = "8025"
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = 'Superb4884'
-DEFAULT_FROM_EMAIL = "androsovwork@gmail.com"
+EMAIL_HOST_PASSWORD = haslo
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

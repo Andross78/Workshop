@@ -2,17 +2,18 @@
 
 {% block content %}
     <div>
-        W koszyku:<hr/>
+        W koszyku: {{ cart.get_total_price }} zl<hr/>
         {% for proc in cart.process.all %}
             <form method="post" action="">
                 {% csrf_token %}
-                <span style="width: 280px; display: inline-block;">{{ proc }}</span>
+                <span style="width: 280px; display: inline-block;">{{ proc }} {{ proc.price }}</span>
                 <input type="hidden" name="pid" value="{{ proc.id }}" />
                 <input  type="submit" value="Usuń" />
             </form>
             {% if forloop.last %}
                 <hr/>
-                <a href="/" >Do kasy &gt;&gt;&gt;</a>
+
+                <a href="{% url 'order' %}" >Zamów &gt;&gt;&gt;</a>
             {% endif %}
         {% empty %}
             Nie wachaj się, dodaj coś!

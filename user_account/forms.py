@@ -1,6 +1,6 @@
 from django import forms
-
-from pancar.models import Car, Cart
+import datetime
+from pancar.models import Car, Cart, User
 
 
 class CarCreateForm(forms.ModelForm):
@@ -9,7 +9,6 @@ class CarCreateForm(forms.ModelForm):
         fields = ['brand', 'model', 'registration', 'year', 'review_date']
 
 
-class CartCreateForm(forms.ModelForm):
-    class Meta:
-        model = Cart
-        fields = ['process']
+class OrderMailForm(forms.Form):
+    info = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Informacja dla nas'}))
+    order_date = forms.CharField(widget=forms.HiddenInput(), initial=datetime.datetime.now())
