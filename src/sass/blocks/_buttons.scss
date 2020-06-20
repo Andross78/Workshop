@@ -102,6 +102,7 @@
         text-decoration: none;
         display: block;
         margin: 0 auto;
+        padding-top: 40px;
         font-size: 22px;
         font-weight: 300;
         color: #c70101;
@@ -118,6 +119,9 @@
           }
         &:hover:after {
             width: 90%;
+        }
+        &_0 {
+            padding-top: 0;
         }
     }
     &_edit {

@@ -50,11 +50,12 @@
     &-item {
         width: 1100px;
         &__title {
+            padding-top: 40px;
             font-size: 26px;
             font-weight: 500;
             color: $text-color;
             text-align: center;
-            margin: 40px 0 33px 0;
+            margin-bottom: 33px;
             &_l {
                 text-align: left;
             }
