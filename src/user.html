@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User account</title>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+    
+    <div class="container">
+        <header class="header header__login">
+            <a href="index.html" class="header__logo">
+                <img src="icons/login/logo2.png" alt="logo">
+            </a>
+            <div class="header__buttons">
+                <a href="login.html">
+                    <button class="button button_login">konto</button>
+                </a>
+                <a href="login.html">
+                    <button class="button button_logout"></button>
+                </a>
+            </div>
+        </header>
+    </div>
+
+    <section class="account" id="account">
+        <div class="container">
+            <ul class="account__tabs">
+                <li class="account__tab account__tab_active"><div>moje dane</div></li>
+                <li class="account__tab"><div>historia</div></li>
+                <li class="account__tab"><div>inforgrafika</div></li>
+            </ul>
+
+            <div class="account__content account__content_active">
+                <div class="account-item">
+                    <h2 class="account-item__title">Informacje podstawowe</h2>
+                    <form class="account-form" action="#">
+                        <input name="name" required placeholder="Imię" type="text">
+                        <input name="name" required placeholder="Nazwisko" type="text">
+                        <input name="phone" required placeholder="Telefon">
+                        <input name="email" required placeholder="E-mail" type="email">
+                    </form>
+                    <button class="button button_save">zapisz zmiany</button>
+
+                    <div class="account-item__car_none" style="display: none;">
+                        <h2 class="">Moje auta</h2>
+                        <div class="account-item__subtitle">Obecnie nie masz żadnych samochodów <br>
+                        dodanych do swojego konta.</div>
+                        <button class="button_car">+ dodaj auto</button>
+                    </div>
+
+                    <div class="account-item__car" >
+                        <h2 class="account-item__title account-item__title_car">Moje auta</h2>
+                        <div class="account-item__wrapper">
+                            <div class="account-item__img">
+                                <img src="icons/user/car_logo.png" alt="zdjęcie marki auta">
+                            </div>
+                            <div class="account-item__descr">
+                                <div class="account-item__title"><span>SKODA </span><span>SUPERB </span><span>2014</span></div>
+                                <p>Ubezpieczenie auta do: <span>27.03.2021</span></p>
+                                <p>Ostatni przegląd techniczny: <span>—</span></p>
+
+                                <div class="account-item__edit">
+                                    <form action="#" method="GET">
+                                        <button class="button button_edit">edytuj</button>
+                                    </form>
+                                    <form action="#" method="GET">
+                                        <button class="button button_edit">historia</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <form action="#" method="GET">
+                                <button class="button_car">+ dodaj kolejne auto</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="account-item__password">
+                        <h2 class="account-item__title">Zmiana hasła</h2>
+                    <form class="account-form account-form__reset_pass" action="#">
+                        <input name="old_password" required placeholder="Hasło" type="text">
+                        <input type="text" style="visibility: hidden;">
+                        <input name="new_password" required placeholder="Nowe hasło" type="text">
+                        <input name="repeat_password" required placeholder="Potwierdź hasło" type="text">
+                    </form>
+                    <button class="button button_save">zapisz zmiany</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="account__content">
+                <div class="account-item">
+                    <h2 class="account-item__title">Historia napraw</h2>
+                    <div class="account-item__subtitle">Tu znajdziesz szczegóły dotyczące poprzednich napraw twojego samochodu.</div>
+                    <div class="account-item__history">
+                        <div class="account-item__img">
+                            <img src="icons/user/history.png" alt="naprawa">
+                        </div>
+                        <div class="account-item__history_descr">
+                            <div class="account-item__title account-item__title_l"><span>17 MARCA 2020</span></div>
+                            <p>Naprawa zawieszenia tylnego</p>
+                        </div>
+                        <div class="account-item__price"><span>220 PLN</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="account__content">
+                <div class="account-item">
+                    <h2 class="account-item__title">Infografika</h2>
+                </div>
+            </div>
+        </div>
+    </section>   
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
