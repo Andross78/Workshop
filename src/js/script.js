@@ -1,4 +1,9 @@
 $(document).ready(function(){ 
+
+    $('.button_reset').click(function(event) {
+        alert("Potwierdzenie zresetowania hasła zostało wysłane");
+    });
+
     $('ul.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function() {
         $(this)
           .addClass('catalog__tab_active').siblings().removeClass('catalog__tab_active')
@@ -57,4 +62,5 @@ $(document).ready(function(){
     });
 
     new WOW().init();
-  });
+    
+});
