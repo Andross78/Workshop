@@ -1,6 +1,79 @@
 {% extends 'account/account.html' %}
+{% load static %}
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User account</title>
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+</head>
 {% block content %}
+    <section class="account" id="account">
+        <div class="container">
+
+            <div class="account__content account__content_active">
+                <div class="account-item">
+                    <h2 class="account-item__title">Informacje podstawowe</h2>
+                    <form class="account-form" action="#">
+                        <input name="name" required placeholder="Imię" type="text">
+                        <input name="name" required placeholder="Nazwisko" type="text">
+                        <input name="phone" required placeholder="Telefon">
+                        <input name="email" required placeholder="E-mail" type="email">
+                    </form>
+                    <button class="button button_save">zapisz zmiany</button>
+
+                    <div class="account-item__car_none" style="display: none;">
+                        <h2 class="">Moje auta</h2>
+                        <div class="account-item__subtitle">Obecnie nie masz żadnych samochodów <br>
+                        dodanych do swojego konta.</div>
+                        <button class="button_car">+ dodaj auto</button>
+                    </div>
+
+                    <div class="account-item__car" >
+                        <h2 class="account-item__title account-item__title_car">Moje auta</h2>
+                        {% for car in request.user.cars.all %}
+                            <div class="account-item__wrapper">
+                            <div class="account-item__img">
+                                <img src="icons/user/car_logo.png" alt="zdjęcie marki auta">
+                            </div>
+                            <div class="account-item__descr">
+                                <div class="account-item__title"><span>{{ car }} {{ car.year }}</span></div>
+                                <p>Ubezpieczenie auta do: <span></span></p>
+                                <p>Ostatni przegląd techniczny: <span>{{ car.review_date }}</span></p>
+
+                                <div class="account-item__edit">
+                                    <form action="#" method="GET">
+                                        <button class="button button_edit">edytuj</button>
+                                    </form>
+                                    <form action="#" method="GET">
+                                        <button class="button button_edit">historia</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <form action="#" method="GET">
+                                <button class="button_car">+ dodaj kolejne auto</button>
+                            </form>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="account-item__password">
+                        <h2 class="account-item__title">Zmiana hasła</h2>
+                    <form class="account-form account-form__reset_pass" action="#">
+                        <input name="old_password" required placeholder="Hasło" type="text">
+                        <input type="text" style="visibility: hidden;">
+                        <input name="new_password" required placeholder="Nowe hasło" type="text">
+                        <input name="repeat_password" required placeholder="Potwierdź hasło" type="text">
+                    </form>
+                    <button class="button button_save">zapisz zmiany</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
     <h2>Some info about Customer</h2>
         {% if user.is_authenticated %}
             <p>Imie - {{ user.first_name }}</p>

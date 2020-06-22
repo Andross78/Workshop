@@ -51,8 +51,9 @@ class Cart(models.Model):
     def __str__(self):
         return "Cart of {}, #{}".format(User, self.id)
 
-    def confirm(self):
-        # send main
-        # zamiana statusu
-        # :)
-        pass
+    def get_total_price(self):
+        processes = Process.objects.filter(carts=self)
+        tot_price = 0
+        for proc in processes:
+            tot_price += proc.price
+        return tot_price

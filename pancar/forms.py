@@ -8,11 +8,28 @@ from pancar.models import User
 
 class MessageForm(forms.Form):
     name = forms.CharField(max_length=64, label='', widget=forms.TextInput(attrs={'placeholder': 'Imię'}))
-    phone = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder': 'Telefonu'}))
+    phone = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder': 'Telefon'}))
     mail = forms.CharField(validators=[validate_email,], label='', widget=forms.TextInput(attrs={'placeholder': 'E-mail'}))
     info = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Informacja dla nas'}))
 
+class UserLoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        widgets = {'username': forms.TextInput(attrs={'placeholder': 'Username', }),
+                   'password': forms.TextInput(attrs={'placeholder': 'Password'})}
+        labels = {
+            "username": "",
+            "password": "",
+        }
 
 class UserCreateForm(forms.ModelForm):
-    username = forms.CharField(max_length=64, label='', widget=forms.TextInput(attrs={'placeholder': 'Login'}))
-    password = forms.CharField(max_length=64, label='', widget=forms.TextInput(attrs={'placeholder': 'Password'}))
+    class Meta:
+        model = User
+        fields = ['email', 'password']
+        widgets = {'email': forms.TextInput(attrs={'placeholder': 'Email',}),
+                   'password': forms.TextInput( attrs={'placeholder': 'Haslo'})}
+        labels = {
+            "email": "",
+            "password": "",
+        }

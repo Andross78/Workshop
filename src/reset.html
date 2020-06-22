@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset password</title>
+    <link href="jquery.alertable.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header header__login">
+            <a href="index.html" class="header__logo">
+                <img src="icons/login/logo2.png" alt="logo">
+            </a>
+        </header>
+
+        <div class="reset">
+            <h2 class="reset__title">Zresetuj hasło</h2>
+            <div class="reset__subtitle">Nie pamiętasz swojego hasła? Wprowadź w polu swój adres email, a wyślemy Ci instrukcję opisującą sposób ustawienia nowego hasła.</div>
+
+            <form class="login-form login-form_reset" action="#">
+                <input name="reset_password" required placeholder="E-mail" type="email">
+
+                <button class="button button_reset">zreseruj</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="jquery.alertable.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse, redirect
 from django.views import View
@@ -6,7 +7,7 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 
 from pancar.models import User, Category, Process, Car, Cart
-from .forms import CarCreateForm, CartCreateForm
+from .forms import CarCreateForm, OrderMailForm
 
 
 class AccountView(View):
@@ -92,7 +93,6 @@ class ProcessesView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        # user = User.objects.get(pk=self.request.user.id)
         user = self.request.user
         cart = user.get_cart()
         process_id = int(request.POST['pid'])
@@ -103,10 +103,41 @@ class ProcessesView(View):
 
 class AccountBasketView(View):
     template_name = 'account/basket.html'
+    success_url = ('basket')
+
     def get(self, request):
         user = User.objects.get(pk=self.request.user.id)
-        cart = Cart.objects.get(user=user)
+        cart = user.get_cart()
+
         context = {
             'cart': cart,
         }
         return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        cart = Cart.objects.get(user=user)
+        cart.process.remove(int(request.POST['pid']))
+        processes = Process.objects.filter(carts=cart)
+
+        return HttpResponseRedirect(reverse(self.success_url))
+
+
+class OrderMailView(FormView):
+    form_class = OrderMailForm
+    template_name = 'account/mail_send.html'
+    def form_valid(self, form):
+        user = self.request.user
+        cart = Cart.objects.get(user=user)
+        processes = Process.objects.filter(carts=cart)
+        title = 'Zamowienie na naprawe samochodu'
+        info = form.cleaned_data['info']
+        date = form.cleaned_data['order_date']
+        message = 'Potrzebuje zamowic takie uslugi: '
+        for i in processes:
+            message += i.name +', '
+        send_mail(title,
+                  f'{message} \nDodatkowe uwagi: {info} \nData zamowienia:{date}',
+                  'wdsasha22@gmail.com',
+                  ['wdsasha22@gmail.com'])
+        return HttpResponseRedirect(reverse_lazy('profile'))

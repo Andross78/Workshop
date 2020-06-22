@@ -25,7 +25,7 @@ SECRET_KEY = '5jq8-v4=fy36kb!gy)pxi_15ck+cm5vu&rb-q%mavu!jgo90t@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -40,13 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pancar',
-    'allauth',
+    'login',
     'user_account',
     'allauth.account',
+    'allauth',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-    'login',
 ]
 
 MIDDLEWARE = [
@@ -83,16 +83,13 @@ WSGI_APPLICATION = 'workshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'HOST': '127.0.0.1',
-#         'NAME': 'pancar',
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'USER': 'postgres',
-#         'PASSWORD': 'coderslab',
-#     }
-# }
-
+DATABASES= {
+    'default':
+        {
+           'ENGINE': 'django.db.backends.sqlite3',
+           'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -143,19 +140,17 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'http://localhost:8000/profile/'
+LOGIN_REDIRECT_URL = '/profile/'
 
 AUTH_USER_MODEL = 'pancar.User'
 
-DATABASES= {
-    'default':
-        {
-           'ENGINE': 'django.db.backends.sqlite3',
-           'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-        }
-}
-
-EMAIL_HOST = "mail.smtpbucket.com"
-EMAIL_PORT = "8025"
-DEFAULT_FROM_EMAIL="Pancar<noreply@pancar.pl>"
+haslo = 1
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'wdsasha22@gmail.com'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+# EMAIL_PORT = "8025"
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = 'AnastasiyaA'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

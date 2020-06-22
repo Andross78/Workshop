@@ -11,8 +11,9 @@
     &_login {
         margin-top: 6px;
         position: relative;
-        width: 124px;
+        width: 88px;
         text-align: right;
+        margin-right: 15px;
         &::before {
             content: '';
             background-image: url('../icons/user.svg');
@@ -22,6 +23,23 @@
             background-repeat: no-repeat; 
             margin-left: -31px;
             margin-top: -3px;
+            position: absolute;
+        }
+    }
+    &_logout {
+        margin-top: 6px;
+        position: relative;
+        width: 40px;
+        text-align: right;
+        &::before {
+            content: '';
+            background-image: url('../icons/logout.svg');
+            background-size:24px;
+            width: 24px; 
+            height: 24px; 
+            background-repeat: no-repeat; 
+            margin-left: -26px;
+            margin-top: -12px;
             position: absolute;
         }
     }
@@ -73,6 +91,43 @@
             position: absolute;
         }
     }
+    &_save {
+        display: block;
+        margin: 0 auto 40px auto;
+        width: 300px;
+        height: 50px;
+        font-size: 16px;
+    }
+    &_car {
+        text-decoration: none;
+        display: block;
+        margin: 0 auto;
+        padding-top: 40px;
+        font-size: 22px;
+        font-weight: 300;
+        color: #c70101;
+        background-color: #f6f6f6;
+        border: none;
+        text-transform: uppercase;
+        &::after {
+            content: "";
+            display: block;
+            width: 0;
+            border-bottom: 1px solid;
+            margin: 0 auto;
+            transition:all 0.3s linear 0s;
+          }
+        &:hover:after {
+            width: 90%;
+        }
+        &_0 {
+            padding-top: 0;
+        }
+    }
+    &_edit {
+        width: 83px;
+        margin-right: 9px;
+    }
     &_main {
         margin-top: 67px;
         width: 300px;
@@ -80,6 +135,11 @@
         font-size: 16px;
     }
     &_in {
+        width: 300px;
+        height: 50px;
+        font-size: 16px;
+    }
+    &_reset {
         width: 300px;
         height: 50px;
         font-size: 16px;
@@ -104,14 +164,5 @@
         width: 131px;
         height: 40px;
         font-size: 14px;
-    }
-    &_download {
-        display: block;
-        margin: 14px auto;
-        width: 300px;
-        height: 50px;
-        background-color: #c70101;
-        border-radius: 5.0px;
-        font-size: 16px;
     }
 }
