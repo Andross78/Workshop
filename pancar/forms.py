@@ -1,10 +1,7 @@
 from django import forms
 from django.core.validators import EmailValidator, validate_email
+from django.contrib.auth.forms import UserCreationForm
 from pancar.models import User
-
-# def valid_phone(phone):
-#     if str(phone[0:3]) != '+48':
-#         raise forms.ValidationError('Numer powinien zaczynac sie od +48')
 
 class MessageForm(forms.Form):
     name = forms.CharField(max_length=64, label='', widget=forms.TextInput(attrs={'placeholder': 'Imię'}))
@@ -23,12 +20,33 @@ class UserLoginForm(forms.ModelForm):
             "password": "",
         }
 
+# class UserCreateForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['email', 'password']
+#         widgets = {'email': forms.TextInput(attrs={'placeholder': 'Email',}),
+#                    'password': forms.TextInput( attrs={'placeholder': 'Haslo'})}
+#         labels = {
+#             "email": "",
+#             "password": "",
+#         }
+#
+# class UserCreateForm(forms.ModelForm):
+#     class Meta:
+#         model =  get_user_model()
+#         fields = ['email','password','first_name','last_name']
+#         widgets = {'password':forms.PasswordInput}
+#     confirm_password = forms.CharField(widget=forms.PasswordInput())
+
+
 class UserCreateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email', 'password']
-        widgets = {'email': forms.TextInput(attrs={'placeholder': 'Email',}),
-                   'password': forms.TextInput( attrs={'placeholder': 'Haslo'})}
+        widgets = {
+            'email': forms.TextInput(attrs={'placeholder': 'Email',}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Haslo',}),
+        }
         labels = {
             "email": "",
             "password": "",

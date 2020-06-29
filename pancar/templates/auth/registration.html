@@ -22,10 +22,11 @@
                 <div class="line"></div>
                 <div class="registration__form">
                     <h2>ZAREJESTRUJ SIĘ</h2>
-                    <form class="registration-form" method="post">
+                    <form class="registration-form" action="{% url 'signin' %}" method="post">
                         {% csrf_token %}
-                        {{ form }}
-                        <button class="button button_in">Załóż konto</button>
+                        {{ form.email }}
+                        {{ form.password }}
+                        <button type="submit" class="button button_in">Załóż konto</button>
                     </form>
                     <div class="registration__terms">
                         Tworząc konto, użytkownik wyraża zgodę na <br> 

@@ -1,0 +1,9 @@
+{% extends 'account/account.html' %}
+
+{% block content %}<br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Zapisz</button>
+    </form>
+{% endblock %}

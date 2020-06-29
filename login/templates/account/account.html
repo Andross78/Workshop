@@ -19,20 +19,14 @@
                     <button class="button button_login">kosz</button>
                 </a>
                 <a href="{% url 'logout' %}?next={{ request.get_full_path }}">
-                            <button class="button button_logout"></button>
+                    <button class="button button_logout"></button>
                 </a>
             </div>
         </header>
     </div>
 
 <body>
-    <div class="container">
-        <ul class="account__tabs">
-            <li class="account__tab account__tab_active"><a href="{% url 'profile' %}">moje dane</a></li>
-            <li class="account__tab"><a href="#">historia</a></li>
-            <li class="account__tab"><a href="{% url 'servises' %}">inforgrafika</a></li>
-        </ul>
-    </div>
+
 
 
     {% block content %}
