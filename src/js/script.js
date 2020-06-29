@@ -45,7 +45,7 @@ $(document).ready(function(){
         })
     });
 
-    $('[data-modal=car]').on('click', function() {
+    $('.button_car').on('click', function() {
         $('.overlay, #car').fadeIn('slow');
     });
 

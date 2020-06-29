@@ -2,12 +2,12 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse, redirect
 from django.views import View
-from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import FormView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from pancar.models import User, Category, Process, Car, Cart
-from .forms import CarCreateForm, OrderMailForm
+from pancar.models import User, Category, Process, Car, Cart, OrderedCart
+from .forms import UserUpdateForm, CarCreateForm, OrderMailForm
 
 
 class AccountView(View):
@@ -17,56 +17,102 @@ class AccountView(View):
 
 
 class AccountProfileView(View):
+    form_class_car = CarCreateForm()
+    form_class_user = UserUpdateForm
+    # form_class_car_update = CarCreateForm()
     template_name = 'account/profile.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        user = self.request.user
+        initial_user_data = {
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'phone': user.phone,
+            'email': user.email,
+        }
+        # form_car_update = self.form_class_car_update
+        form_car = self.form_class_car
+        form_user = self.form_class_user(initial=initial_user_data)
+        context = {
+            'form_car': form_car,
+            'form_user': form_user,
+            # 'form_car_update': form_car_update,
+        }
+        return render(request, self.template_name, context)
 
+    def post(self, request, *args, **kwargs):
+        form_user = self.form_class_user(request.POST)
+        form_car = self.form_class_car(request.POST)
+        # form_car_update = self.form_class_car(request.POST)
+        if form_user.is_valid():
+            user = self.request.user
+            user.first_name = request.POST['first_name']
+            user.last_name = request.POST['last_name']
+            user.email = request.POST['email']
+            user.phone = request.POST['phone']
+            if user.first_name or user.last_name or user.email or user.phone:
+                user.save()
+                return render(request, self.template_name)
+        if form_car.is_valid():
+            Car.objects.create(
+                brand=form_car.cleaned_data['brand'],
+                model=form_car.cleaned_data['model'],
+                registration=form_car.cleaned_data['registration'],
+                year=form_car.cleaned_data['year'],
+                insurance=form_car.cleaned_data['insurance'],
+                review_date=form_car.cleaned_data['review_date'],
+                owner=User.objects.get(pk=self.request.user.id)
+            )
+            return render(request, self.template_name)
+        # if form_car_update.is_valid():
+        #     pass
+            # car = Car.objects.get(owner=self.request.user)
+            # car.brand = form_car.cleaned_data['brand']
+            # car.model = form_car.cleaned_data['model']
+            # car.registration = form_car.cleaned_data['registration']
+            # car.year = form_car.cleaned_data['year']
+            # car.insurance = form_car.cleaned_data['insurance']
+            # car.review_date = form_car.cleaned_data['review_date']
+            # return render(request, self.success_url)
 
-class ProfileUpdateView(UpdateView):
+class UserUpdateView(UpdateView):
     model = User
-    fields = ['first_name', 'last_name', 'phone']
+    fields = ['first_name', 'last_name', 'phone', 'email']
     template_name_suffix = '_update_form'
-    success_url = reverse_lazy("profile")
-
-
-class AccountCarView(View):
-    template_name = 'account/car.html'
-    def get(self, request):
-        return render(request, self.template_name)
 
 
 class CarCreateView(FormView):
     form_class = CarCreateForm
     template_name = 'account/car_form.html'
-    success_url = 'car_details'
+    success_url = 'profile'
+
 
     def form_valid(self, form):
         car = Car.objects.create(
-            brand = form.cleaned_data['brand'],
-            model = form.cleaned_data['model'],
-            registration = form.cleaned_data['registration'],
-            year = form.cleaned_data['year'],
-            review_date = form.cleaned_data['review_date'],
-            owner = User.objects.get(pk=self.request.user.id)
+            brand=form.cleaned_data['brand'],
+            model=form.cleaned_data['model'],
+            registration=form.cleaned_data['registration'],
+            year=form.cleaned_data['year'],
+            insurance=form.cleaned_data['insurance'],
+            review_date=form.cleaned_data['review_date'],
+            owner=User.objects.get(pk=self.request.user.id)
         )
         return HttpResponseRedirect(
             reverse(
-                self.success_url,
-                kwargs={
-                    'pk': car.id,
-                }
+                self.success_url
             )
         )
 
 
-class CarDetailView(View):
-    def get(self, request, pk):
-        car = Car.objects.get(id=pk)
-        context = {
-            'car': car
-        }
-        return render(request, 'account/car_detail.html', context)
+class CarUpdateView(UpdateView):
+    model = Car
+    fields = ['brand', 'model', 'registration', 'year', 'review_date', 'insurance']
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy("profile")
+
+class CarDeleteView(DeleteView):
+    model = Car
+    success_url = reverse_lazy("profile")
 
 
 class AccountServisesView(View):
@@ -82,7 +128,7 @@ class AccountServisesView(View):
 
 class ProcessesView(View):
     template_name = 'account/processes.html'
-    success_url = 'basket'
+    success_url = 'servises'
 
     def get(self, request, category_id):
         category = Category.objects.get(id=category_id)
@@ -108,7 +154,6 @@ class AccountBasketView(View):
     def get(self, request):
         user = User.objects.get(pk=self.request.user.id)
         cart = user.get_cart()
-
         context = {
             'cart': cart,
         }
@@ -129,15 +174,35 @@ class OrderMailView(FormView):
     def form_valid(self, form):
         user = self.request.user
         cart = Cart.objects.get(user=user)
+        ordered_cart = OrderedCart.objects.create(user=user)
+        price = cart.get_total_price()
         processes = Process.objects.filter(carts=cart)
+        for proc in processes:
+            ordered_cart.process.add(proc)
         title = 'Zamowienie na naprawe samochodu'
         info = form.cleaned_data['info']
         date = form.cleaned_data['order_date']
-        message = 'Potrzebuje zamowic takie uslugi: '
+        message = f'Zamowienie od: {user.first_name} {user.last_name}\nNumer teefonu: {user.phone}'
+        message += '\nPotrzebuje zamowic takie uslugi: '
         for i in processes:
-            message += i.name +', '
+            message += i.name +';\n '
+        message += f'Cena za wszystko {price} zl'
         send_mail(title,
                   f'{message} \nDodatkowe uwagi: {info} \nData zamowienia:{date}',
                   'wdsasha22@gmail.com',
                   ['wdsasha22@gmail.com'])
+        cart.delete()
         return HttpResponseRedirect(reverse_lazy('profile'))
+
+
+class OrderedCartsView(View):
+    template_name = 'account/ordered_carts.html'
+
+    def get(self, request):
+        user = User.objects.get(pk=self.request.user.id)
+
+        ordered_carts = OrderedCart.objects.filter(user=user)
+        context = {
+                'ordered_carts': ordered_carts,
+        }
+        return render(request, self.template_name, context)

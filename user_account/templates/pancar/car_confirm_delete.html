@@ -1,0 +1,20 @@
+{% extends 'account/account.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User account</title>
+        <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    </head>
+    <body>
+        <h1>Napewno chcesz usunac samochod?</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button button_edit">Usun</button>
+        </form>
+    </body>
+
+{% endblock %}

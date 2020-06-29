@@ -8,56 +8,78 @@
     <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
 </head>
 {% block content %}
+    <div class="container">
+        <div class="account__tabs">
+            <a href="{% url 'profile' %}" class="account__tab account__tab_active"><div>moje dane</div></a>
+            <a href="{% url 'user_orders' %}" class="account__tab "><div>historia</div></a>
+            <a href="{% url 'servises' %}" class="account__tab "><div>uslugi</div></a>
+        </div>
+    </div>
+    <div class="overlay">
+        <div class="modal" id="car">
+            <div class="modal__close">&times;</div>
+            <div class="modal__subtitle">Dodaj nowy samochód</div>
+            <form class="feed-form feed-form_mt25" action="{% url 'car_create' %}" method="POST">
+                {% csrf_token %}
+                {{ form_car }}
+                <input type="hidden" name="action" value="car_create" />
+                <button class="button button_submit">dodaj</button>
+            </form>
+        </div>
+    </div>
+{#    <div class="overlay">#}
+{#        <div class="modal" id="car_details">#}
+{#            <div class="modal__close">&times;</div>#}
+{#            <div class="modal__subtitle">Edytuj samochód</div>#}
+{#            <form class="feed-form feed-form_mt25" action="{% url 'car_details' %}" method="POST">#}
+{#                {% csrf_token %}#}
+{#                {{ form_car_update }}#}
+{#                <input type="hidden" name="action" value="car_details" />#}
+{#                <button class="button button_submit">zapisz</button>#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
     <section class="account" id="account">
         <div class="container">
-
             <div class="account__content account__content_active">
                 <div class="account-item">
                     <h2 class="account-item__title">Informacje podstawowe</h2>
-                    <form class="account-form" action="#">
-                        <input name="name" required placeholder="Imię" type="text">
-                        <input name="name" required placeholder="Nazwisko" type="text">
-                        <input name="phone" required placeholder="Telefon">
-                        <input name="email" required placeholder="E-mail" type="email">
+                    <form method="post" class="account-form" action="{% url 'user_update' user.pk %}">
+                        {% csrf_token %}
+                        {{ form_user }}
+                        <button class="button button_save">zmien dane</button>
                     </form>
-                    <button class="button button_save">zapisz zmiany</button>
-
-                    <div class="account-item__car_none" style="display: none;">
-                        <h2 class="">Moje auta</h2>
-                        <div class="account-item__subtitle">Obecnie nie masz żadnych samochodów <br>
-                        dodanych do swojego konta.</div>
-                        <button class="button_car">+ dodaj auto</button>
-                    </div>
-
                     <div class="account-item__car" >
                         <h2 class="account-item__title account-item__title_car">Moje auta</h2>
                         {% for car in request.user.cars.all %}
                             <div class="account-item__wrapper">
                             <div class="account-item__img">
-                                <img src="icons/user/car_logo.png" alt="zdjęcie marki auta">
+                                <img src="{% static 'icons/user/car_logo.png' %}" alt="zdjęcie marki auta">
                             </div>
                             <div class="account-item__descr">
-                                <div class="account-item__title"><span>{{ car }} {{ car.year }}</span></div>
-                                <p>Ubezpieczenie auta do: <span></span></p>
+                                <div class="account-item__title"><span>{{ car }} {{ car.registration }}</span></div>
+                                <p>Ubezpieczenie auta do: <span>{{ car.insurance }}</span></p>
                                 <p>Ostatni przegląd techniczny: <span>{{ car.review_date }}</span></p>
 
                                 <div class="account-item__edit">
-                                    <form action="#" method="GET">
-                                        <button class="button button_edit">edytuj</button>
+                                    <form action="{% url 'car_details' car.id %}" method="GET">
+                                        <button data-modal="car_details" class="button button_edit">edytuj</button>
                                     </form>
-                                    <form action="#" method="GET">
-                                        <button class="button button_edit">historia</button>
+                                    <form action="{% url 'car_delete' car.id %}" method="GET">
+                                        <button class="button button_edit">usun</button>
                                     </form>
                                 </div>
                             </div>
-                            <form action="#" method="GET">
-                                <button class="button_car">+ dodaj kolejne auto</button>
-                            </form>
+                                <button data-modal="car" class="button_car">+ dodaj auto</button>
                         </div>
+                        {% empty %}
+                            <div class="account-item__car_none">
+                                <div class="account-item__subtitle">Obecnie nie masz żadnych samochodów <br>
+                                dodanych do swojego konta.</div>
+                                <button data-modal="car" class="button_car">+ dodaj auto</button>
+                            </div>
                         {% endfor %}
-
                     </div>
-
                     <div class="account-item__password">
                         <h2 class="account-item__title">Zmiana hasła</h2>
                     <form class="account-form account-form__reset_pass" action="#">
@@ -70,17 +92,7 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </section>
-    <h2>Some info about Customer</h2>
-        {% if user.is_authenticated %}
-            <p>Imie - {{ user.first_name }}</p>
-            <p>Nazwisko - {{ user.last_name }}</p>
-            <p>Username - {{ user }}</p>
 
-            <a href="{% url 'profile_update' user.pk%}">Uzupelnij profil</a>
-
-        {% endif %}
 {% endblock %}

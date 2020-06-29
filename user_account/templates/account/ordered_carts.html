@@ -1,0 +1,45 @@
+{% extends 'account/account.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="account__tabs">
+            <a href="{% url 'profile' %}" class="account__tab "><div>moje dane</div></a>
+            <a href="{% url 'user_orders' %}" class="account__tab account__tab_active"><div>historia</div></a>
+            <a href="{% url 'servises' %}" class="account__tab "><div>uslugi</div></a>
+        </div>
+    </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User account</title>
+        <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    </head>
+    <body>
+        <section class="account" id="account">
+            <div class="container">
+                <div class="account__content account__content_active">
+                    <div class="account-item">
+                        <h2 class="account-item__title">Historia napraw</h2>
+                        <div class="account-item__subtitle">Tu znajdziesz szczegóły dotyczące poprzednich napraw twojego samochodu.</div>
+                            {% for cart in ordered_carts %}
+                            <div class="account-item__history">
+                                <div class="account-item__img">
+                                    <img src="{% static 'icons/user/history.png' %}" alt="naprawa">
+                                </div>
+                                <div class="account-item__history_descr">
+                                    <div class="account-item__title account-item__title_l"><span>{{ cart.created }}</span></div>
+                                    {% for proc in cart.process.all %}
+                                        <p>{{ proc }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="account-item__price"><span>{{ cart.get_total_amount }}</span></div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+{% endblock %}

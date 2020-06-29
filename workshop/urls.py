@@ -27,15 +27,15 @@ from pancar.views import (
 from user_account.views import (
                     AccountView,
                     AccountProfileView,
-                    AccountCarView,
+                    UserUpdateView,
                     CarCreateView,
+                    CarUpdateView,
+                    CarDeleteView,
                     AccountServisesView,
                     AccountBasketView,
                     ProcessesView,
-                    ProfileUpdateView,
-                    CarDetailView,
                     OrderMailView,
-
+                    OrderedCartsView,
 )
 
 
@@ -56,10 +56,11 @@ urlpatterns = [
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('account/', AccountView.as_view(), name='account'),
     path('profile/', AccountProfileView.as_view(), name='profile'),
-    path('profile_update/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
-    path('user_car/', AccountCarView.as_view(), name='car'),
+    path('user_update/<int:pk>/', UserUpdateView.as_view(), name='user_update'),
+    path('user_orders/', OrderedCartsView.as_view(), name='user_orders'),
     path('car_create/', CarCreateView.as_view(), name='car_create'),
-    path('car_details/<int:pk>/', CarDetailView.as_view(), name='car_details'),
+    path('car_details/<int:pk>/', CarUpdateView.as_view(), name='car_details'),
+    path('car_delete/<int:pk>', CarDeleteView.as_view(), name='car_delete'),
     path('user_servises/', AccountServisesView.as_view(), name='servises'),
     path('processes/<int:category_id>', ProcessesView.as_view(), name='processes'),
     path('basket/', AccountBasketView.as_view(), name='basket'),

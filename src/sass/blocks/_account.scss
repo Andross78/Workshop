@@ -16,6 +16,7 @@
         font-size: 18px;
         font-weight: 500;
         text-transform: uppercase;
+        font-style: none;
         color: #6b6b6b;
         text-align: center;
         line-height: 48px;
@@ -26,6 +27,8 @@
         &:hover {
             box-shadow: 3px 3px 15px $main-color;
             border: none;
+            text-decoration: none;
+            color: #6b6b6b;
         }
         div {
             transform: skewX(25deg);
@@ -34,6 +37,9 @@
             color: #fff;
             background-color: $main-color;
             border: none;
+            &:hover {
+                color: #fff;
+            }
         }
     }
 

@@ -1,6 +1,13 @@
 {% extends 'account/account.html' %}
 
 {% block content %}<br>
+    <div class="container">
+        <div class="account__tabs">
+            <a href="{% url 'profile' %}" class="account__tab "><div>moje dane</div></a>
+            <a href="{% url 'user_orders' %}" class="account__tab "><div>historia</div></a>
+            <a href="{% url 'servises' %}" class="account__tab account__tab_active"><div>uslugi</div></a>
+        </div>
+    </div>
     <div>
         {% for proc in processes %}
             <form method="post">
