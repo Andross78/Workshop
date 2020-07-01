@@ -17,9 +17,9 @@ class AccountView(View):
 
 
 class AccountProfileView(View):
-    form_class_car = CarCreateForm()
+    form_class_car = CarCreateForm
+    form_class_car_update = CarCreateForm
     form_class_user = UserUpdateForm
-    # form_class_car_update = CarCreateForm()
     template_name = 'account/profile.html'
 
     def get(self, request):
@@ -30,40 +30,40 @@ class AccountProfileView(View):
             'phone': user.phone,
             'email': user.email,
         }
-        # form_car_update = self.form_class_car_update
+        form_car_update = self.form_class_car_update
         form_car = self.form_class_car
         form_user = self.form_class_user(initial=initial_user_data)
         context = {
             'form_car': form_car,
             'form_user': form_user,
-            # 'form_car_update': form_car_update,
+            'form_car_update': [form_car_update(instance=car) for car in user.cars.all()],
         }
         return render(request, self.template_name, context)
 
-    def post(self, request, *args, **kwargs):
-        form_user = self.form_class_user(request.POST)
-        form_car = self.form_class_car(request.POST)
-        # form_car_update = self.form_class_car(request.POST)
-        if form_user.is_valid():
-            user = self.request.user
-            user.first_name = request.POST['first_name']
-            user.last_name = request.POST['last_name']
-            user.email = request.POST['email']
-            user.phone = request.POST['phone']
-            if user.first_name or user.last_name or user.email or user.phone:
-                user.save()
-                return render(request, self.template_name)
-        if form_car.is_valid():
-            Car.objects.create(
-                brand=form_car.cleaned_data['brand'],
-                model=form_car.cleaned_data['model'],
-                registration=form_car.cleaned_data['registration'],
-                year=form_car.cleaned_data['year'],
-                insurance=form_car.cleaned_data['insurance'],
-                review_date=form_car.cleaned_data['review_date'],
-                owner=User.objects.get(pk=self.request.user.id)
-            )
-            return render(request, self.template_name)
+    # def post(self, request, *args, **kwargs):
+    #     form_user = self.form_class_user(request.POST)
+    #     form_car = self.form_class_car(request.POST)
+    #     # form_car_update = self.form_class_car(request.POST)
+    #     if form_user.is_valid():
+    #         user = self.request.user
+    #         user.first_name = request.POST['first_name']
+    #         user.last_name = request.POST['last_name']
+    #         user.email = request.POST['email']
+    #         user.phone = request.POST['phone']
+    #         if user.first_name or user.last_name or user.email or user.phone:
+    #             user.save()
+    #             return render(request, self.template_name)
+    #     if form_car.is_valid():
+    #         Car.objects.create(
+    #             brand=form_car.cleaned_data['brand'],
+    #             model=form_car.cleaned_data['model'],
+    #             registration=form_car.cleaned_data['registration'],
+    #             year=form_car.cleaned_data['year'],
+    #             insurance=form_car.cleaned_data['insurance'],
+    #             review_date=form_car.cleaned_data['review_date'],
+    #             owner=User.objects.get(pk=self.request.user.id)
+    #         )
+    #         return render(request, self.template_name)
         # if form_car_update.is_valid():
         #     pass
             # car = Car.objects.get(owner=self.request.user)
