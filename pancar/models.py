@@ -33,6 +33,7 @@ class Car(models.Model):
     year = models.IntegerField()
     review_date = models.DateTimeField(null=True)
     insurance = models.DateTimeField(null=True)
+    vin = models.CharField(max_length=20, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='cars')
 
     def __str__(self):

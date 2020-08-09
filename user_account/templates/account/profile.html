@@ -41,7 +41,7 @@
                         <h2 class="account-item__title account-item__title_car">Moje auta</h2>
                         {% for car in request.user.cars.all %}
                             <div class="overlay">
-                                <div class="modal" id="car_details_{{  car.id }}">
+                                <div class="modal" id="car_details">
                                     <div class="modal__close">&times;</div>
                                     <div class="modal__subtitle">Edytuj samochód</div>
                                     <form class="feed-form feed-form_mt25" action="{% url 'car_details'  car.id %}" method="POST">
@@ -82,13 +82,14 @@
                     </div>
                     <div class="account-item__password">
                         <h2 class="account-item__title">Zmiana hasła</h2>
-                    <form class="account-form account-form__reset_pass" action="#">
-                        <input name="old_password" required placeholder="Hasło" type="text">
-                        <input type="text" style="visibility: hidden;">
-                        <input name="new_password" required placeholder="Nowe hasło" type="text">
-                        <input name="repeat_password" required placeholder="Potwierdź hasło" type="text">
-                    </form>
-                    <button class="button button_save">zapisz zmiany</button>
+                        <form class="account-form account-form__reset_pass" action="{% url 'profile' %}" method="post">
+                            {% csrf_token %}
+                            <input type='password' name="password" required placeholder="Hasło">
+                            <input type="text" style="visibility: hidden;">
+                            <input type='password' name="new_password" required placeholder="Nowe hasło">
+                            <input type='password' name="repeat_password" required placeholder="Potwierdź hasło">
+                            <button type='submit' class="button button_save">zapisz zmiany</button>
+                        </form>
                     </div>
                 </div>
             </div>
