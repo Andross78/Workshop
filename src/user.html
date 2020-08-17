@@ -29,24 +29,50 @@
             <div class="modal__close">&times;</div>
             <div class="modal__subtitle">Dodaj nowy samochód</div>
             <form class="feed-form feed-form_mt25" action="#">
+                <input placeholder="Producent" list="brand" type="text">
+                <datalist id="brand">
+                    <option value="Volvo" label="Volvo">
+                    <option value="Skoda" label="Skoda">
+                    <option value="Volkswagen" label="Volkswagen">
+                    <option value="BMW" label="BMW">
+                    <option value="Mercedes-Benz" label="Mercedes-Benz">
+                </datalist>
+                <input placeholder="Rok" type="text">
+                <input placeholder="Model" type="text">
+                <input placeholder="Ostatni przegłąd (opcjonalnie)" onfocus="(this.type='date')">
+                <input placeholder="Ubezpieczenie ważne do (opcjonalnie)" onfocus="(this.type='date')">
+
+                <button class="button button_submit">dodaj</button>
+            </form>
+        </div>
+        <div class="modal" id="car-edit">
+            <div class="modal__close">&times;</div>
+            <div class="modal__subtitle">Edytuj</div>
+            <form class="feed-form feed-form_mt25" action="#">
                 <input name="name" placeholder="Producent" type="text">
                 <input name="name" placeholder="Rok" type="text">
                 <input name="name" placeholder="Model" type="text">
                 <input name="name" placeholder="Ostatni przegłąd (opcjonalnie)" type="date">
                 <input name="name" placeholder="Ubezpieczenie ważne do (opcjonalnie)" type="date">
 
-                <button class="button button_submit">dodaj</button>
+                <button class="button button_submit">zapisz</button>
             </form>
         </div>
     </div>
 
     <section class="account" id="account">
         <div class="container">
-            <ul class="account__tabs">
+<!--             <ul class="account__tabs">
                 <li class="account__tab account__tab_active"><div>moje dane</div></li>
                 <li class="account__tab"><div>historia</div></li>
                 <li class="account__tab"><div>inforgrafika</div></li>
-            </ul>
+            </ul> -->
+
+            <div class="account__tabs">
+                <a href="#" class="account__tab account__tab_active"><div>moje dane</div></a>
+                <a href="#" class="account__tab"><div>historia</div></a>
+                <a href="#" class="account__tab"><div>uslugi</div></a>
+            </div>
 
             <div class="account__content account__content_active">
                 <div class="account-item">
@@ -66,7 +92,7 @@
                         <button data-modal="car" class="button_car">+ dodaj auto</button>
                     </div>
 
-                    <div class="account-item__car" style="display: none;">
+                    <div class="account-item__car">
                         <h2 class="account-item__title account-item__title_car">Moje auta</h2>
                         <div class="account-item__wrapper">
                             <div class="account-item__img">
@@ -78,12 +104,8 @@
                                 <p>Ostatni przegląd techniczny: <span>—</span></p>
 
                                 <div class="account-item__edit">
-                                    <form action="#" method="GET">
-                                        <button class="button button_edit">edytuj</button>
-                                    </form>
-                                    <form action="#" method="GET">
-                                        <button class="button button_edit">historia</button>
-                                    </form>
+                                    <button data-modal="car-edit" class="button button_edit">edytuj</button>
+                                    <button class="button button_edit">historia</button>
                                 </div>
                             </div>
                             <form action="#" method="GET">
@@ -109,6 +131,26 @@
                 <div class="account-item">
                     <h2 class="account-item__title">Historia napraw</h2>
                     <div class="account-item__subtitle">Tu znajdziesz szczegóły dotyczące poprzednich napraw twojego samochodu.</div>
+                    <div class="account-item__history">
+                        <div class="account-item__img">
+                            <img src="icons/user/history.png" alt="naprawa">
+                        </div>
+                        <div class="account-item__history_descr">
+                            <div class="account-item__title account-item__title_l"><span>17 MARCA 2020</span></div>
+                            <p>Naprawa zawieszenia tylnego</p>
+                        </div>
+                        <div class="account-item__price"><span>220 PLN</span></div>
+                    </div>
+                    <div class="account-item__history">
+                        <div class="account-item__img">
+                            <img src="icons/user/history.png" alt="naprawa">
+                        </div>
+                        <div class="account-item__history_descr">
+                            <div class="account-item__title account-item__title_l"><span>17 MARCA 2020</span></div>
+                            <p>Naprawa zawieszenia tylnego</p>
+                        </div>
+                        <div class="account-item__price"><span>220 PLN</span></div>
+                    </div>
                     <div class="account-item__history">
                         <div class="account-item__img">
                             <img src="icons/user/history.png" alt="naprawa">

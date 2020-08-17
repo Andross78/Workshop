@@ -1,14 +1,18 @@
+from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 
+from rest_framework.generics import (ListCreateAPIView,RetrieveUpdateDestroyAPIView,)
+from rest_framework import permissions
+from .serializers import UserSerializer
 
 from .forms import MessageForm, UserCreateForm, UserLoginForm
-from .models import Car, Process, Category
+from .models import Car, Process, Category, User
 
 
 class ProcessView(View):
@@ -89,5 +93,38 @@ class SignupView(FormView):
         new_user.username = form.cleaned_data['email']
         password = form.cleaned_data["password"]
         new_user.set_password(password)
+        new_user.is_active = False
         new_user.save()
+        new_user.send_confirm_email(self.request)
         return super().form_valid(form)
+
+
+class ConfirmView(View):
+    def get(self, request, uid, token):
+        from django.contrib.auth.tokens import default_token_generator
+        from djoser.utils import decode_uid
+        uid = int(decode_uid(uid))
+        user = User.objects.get(id=uid)
+        if default_token_generator.check_token(user,token):
+            user.is_active = True
+            user.save()
+            #login(self.request, user)
+            success_url = reverse_lazy('profile')
+        else:
+            success_url = revese_lazy('login_signin')
+        return HttpResponseRedirect(success_url)
+
+class UserListCreateView(ListCreateAPIView):
+    queryset=User.objects.all()
+    serializer_class=UserSerializer
+    permission_classes=[permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        user=self.request.user
+        serializer.save(user=user)
+
+
+class UserDetailView(RetrieveUpdateDestroyAPIView):
+    queryset=User.objects.all()
+    serializer_class=UserSerializer
+    permission_classes=[permissions.IsAuthenticated]

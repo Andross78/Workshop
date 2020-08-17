@@ -46,9 +46,18 @@ $(document).ready(function(){
     });
 
     $('[data-modal=car]').on('click', function() {
-        $('.overlay, #car').fadeIn('slow');
+        console.log('create Car')
+        $('#car').fadeIn('slow');
+    });
+    $('[data-modal=car_details]').on('click', function() {
+        console.log('edit Car')
+        $('#car_details').fadeIn('slow');
     });
 
+    var register_button = document.getElementById('signup_button');
+    register_button.addEventListener('click', function(event){
+        alert('Mail z aktywacja konta zostal wyslany na poczte')
+    })
     // Smooth scroll and page up
 
     $(window).scroll(function() {

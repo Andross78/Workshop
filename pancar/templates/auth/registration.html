@@ -26,7 +26,7 @@
                         {% csrf_token %}
                         {{ form.email }}
                         {{ form.password }}
-                        <button type="submit" class="button button_in">Załóż konto</button>
+                        <button id="signup_button" type="submit" class="button button_in">Załóż konto</button>
                     </form>
                     <div class="registration__terms">
                         Tworząc konto, użytkownik wyraża zgodę na <br> 
@@ -48,6 +48,6 @@
             </div>
         </div>
     </section>
-    
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

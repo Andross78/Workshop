@@ -35,7 +35,7 @@ $(document).ready(function(){
         $('.overlay, #consultation').fadeIn('slow');
     });
     $('.modal__close').on('click', function() {
-        $('.overlay, #consultation, #thanks, #order').fadeOut('slow');
+        $('.overlay, #consultation, #thanks, #order, #car, #car-edit').fadeOut('slow');
     });
 
     $('.button_mini').each(function(i) {
@@ -47,6 +47,12 @@ $(document).ready(function(){
 
     $('.button_car').on('click', function() {
         $('.overlay, #car').fadeIn('slow');
+    });
+
+    $('.button_edit').each(function(i) {
+        $(this).on('click', function() {
+            $('.overlay, #car-edit').fadeIn('slow');
+        })
     });
 
     // Smooth scroll and page up

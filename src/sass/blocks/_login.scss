@@ -16,18 +16,17 @@
         }
     }
     &__help {
+        position: relative;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin-top: 10px;
         font-size: 14px;
         font-weight: 500;
         color: $text-color;
-        .checkbox {
-            &__text {
-                position: relative;
-                top: -21px;
-                padding: 0 0 0 20px;
-            }
+        span {
+            position: absolute;
+            left: 105px;
         }
         a {
             display: block;

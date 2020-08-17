@@ -47,13 +47,17 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'djoser',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -138,20 +142,35 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    
+}
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}/',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {},
+}
+
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/profile/'
-LOGOUT_REDIRECT_URL = '127.0.0.1:8000/login/'
+LOGOUT_REDIRECT_URL = '/login_signin/'
 
 AUTH_USER_MODEL = 'pancar.User'
 
-haslo = 1
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = 'wdsasha22@gmail.com'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 # EMAIL_PORT = "8025"
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = 'AnastasiyaA'
+EMAIL_HOST_PASSWORD = 'xxx'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
