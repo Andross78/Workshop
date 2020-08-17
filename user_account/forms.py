@@ -45,13 +45,13 @@ class CarCreateForm(forms.ModelForm):
 
 
 class CarUpdateForm(forms.Form):
-    brand = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Marka:'}))
-    model = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Model:'}))
-    registration = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Nr rejestracyjny:'}))
-    year = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Rok produkcji:'}))
-    insurance = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Ubezpieczenie:'}))
-    review_date = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Przeglad techniczny:'}))
-    vin = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Vin:'}))
+    brand = forms.CharField(label='', widget=forms.TextInput(attrs={'id': 'brand_edit','placeholder': 'Marka:'}))
+    model = forms.CharField(label='', widget=forms.TextInput(attrs={'id': 'model_edit','placeholder': 'Model:'}))
+    registration = forms.CharField(label='', widget=forms.TextInput(attrs={'id': 'registration_edit','placeholder': 'Nr rejestracyjny:'}))
+    year = forms.CharField(label='', widget=forms.TextInput(attrs={'id': 'year_edit','placeholder': 'Rok produkcji:'}))
+    insurance = forms.CharField(label='', widget=forms.TextInput(attrs={'id': 'insurance_edit','placeholder': 'Ubezpieczenie:'}))
+    review_date = forms.CharField(label='', widget=forms.TextInput(attrs={'id': 'review_date_edit','placeholder': 'Przeglad techniczny:'}))
+    vin = forms.CharField(label='', widget=forms.TextInput(attrs={'id': 'vin_edit','placeholder': 'Vin:'}))
     
 
 

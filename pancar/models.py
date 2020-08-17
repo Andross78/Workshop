@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.shortcuts import reverse
 
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
 
 class User(AbstractUser):
     phone = models.CharField(max_length=20)
@@ -22,6 +27,11 @@ class User(AbstractUser):
         except Exception as e:
             ordered_cart = OrderedCart.objects.create(user=self)
         return ordered_cart
+
+    def send_confirm_email(self, request):
+        from djoser.conf import settings as ds
+        ae = ds.EMAIL.activation(request=request, context={'user':self})
+        ae.send([self.email])
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name + ' ' + self.email
@@ -84,3 +94,9 @@ class OrderedCart(models.Model):
         for proc in processes:
             tot_price += proc.price
         return tot_price
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
