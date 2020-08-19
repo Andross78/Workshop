@@ -24,8 +24,8 @@
         </header>
     </div>
 
-    <div class="overlay">
-        <div class="modal" id="car">
+    <div class="overlay" id="car">
+        <div class="modal">
             <div class="modal__close">&times;</div>
             <div class="modal__subtitle">Dodaj nowy samochód</div>
             <form class="feed-form feed-form_mt25" action="#">
@@ -52,8 +52,8 @@
                 <input name="name" placeholder="Producent" type="text">
                 <input name="name" placeholder="Rok" type="text">
                 <input name="name" placeholder="Model" type="text">
-                <input name="name" placeholder="Ostatni przegłąd (opcjonalnie)" type="date">
-                <input name="name" placeholder="Ubezpieczenie ważne do (opcjonalnie)" type="date">
+                <input placeholder="Ostatni przegłąd (opcjonalnie)" onfocus="(this.type='date')">
+                <input placeholder="Ubezpieczenie ważne do (opcjonalnie)" onfocus="(this.type='date')">
 
                 <button class="button button_submit">zapisz</button>
             </form>
@@ -62,17 +62,11 @@
 
     <section class="account" id="account">
         <div class="container">
-<!--             <ul class="account__tabs">
+            <ul class="account__tabs">
                 <li class="account__tab account__tab_active"><div>moje dane</div></li>
                 <li class="account__tab"><div>historia</div></li>
                 <li class="account__tab"><div>inforgrafika</div></li>
-            </ul> -->
-
-            <div class="account__tabs">
-                <a href="#" class="account__tab account__tab_active"><div>moje dane</div></a>
-                <a href="#" class="account__tab"><div>historia</div></a>
-                <a href="#" class="account__tab"><div>uslugi</div></a>
-            </div>
+            </ul>
 
             <div class="account__content account__content_active">
                 <div class="account-item">
@@ -108,9 +102,9 @@
                                     <button class="button button_edit">historia</button>
                                 </div>
                             </div>
-                            <form action="#" method="GET">
+                            <div>
                                 <button data-modal="car" class="button_car button_car_0">+ dodaj kolejne auto</button>
-                            </form>
+                            </div>
                         </div>
                     </div>
 
@@ -166,7 +160,7 @@
 
             <div class="account__content">
                 <div class="account-item">
-                    <h2 class="account-item__title">Infografika</h2>
+                    <h2 class="account-item__title">Usługi</h2>
                 </div>
             </div>
         </div>

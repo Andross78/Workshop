@@ -45,8 +45,10 @@ $(document).ready(function(){
         })
     });
 
-    $('.button_car').on('click', function() {
-        $('.overlay, #car').fadeIn('slow');
+    $('.button_car').each(function(i) {
+        $(this).on('click', function() {
+            $('.overlay, #car').fadeIn('slow');
+        })
     });
 
     $('.button_edit').each(function(i) {
