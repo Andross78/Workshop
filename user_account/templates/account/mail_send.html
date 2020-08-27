@@ -3,7 +3,10 @@
 {% block content %}
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <input name='info'/><br/>
+        {% for car in request.user.cars.all %}
+            <input type="radio"/><span>{{ car.brand }} {{ car.registration }} </span><br/>
+        {% endfor %}
         <button>Wyslij</button>
     </form>
 

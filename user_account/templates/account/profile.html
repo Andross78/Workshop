@@ -46,7 +46,13 @@
                                     <div class="modal__subtitle">Edytuj samochód</div>
                                     <form class="feed-form feed-form_mt25" action="{% url 'car_details'  car.id %}" method="POST">
                                         {% csrf_token %}
-                                        {{ form_car_update }}
+                                        <input name='brand' id='brand_edit_{{ car.id }}' value='{{ car.brand }}'>
+                                        <input name='model' id='model_edit_{{ car.id }}' value='{{ car.model }}'>
+                                        <input name='registration' id='registration_edit_{{ car.id }}' value='{{ car.registration }}'>
+                                        <input name='year' id='year_edit_{{ car.id }}' value='{{ car.year }}'>
+                                        <input name='insurance' id='insurance_edit_{{ car.id }}' value='{{ car.insurance }}' onfocus='(this.type="date")'>
+                                        <input name='review_date' id='review_date_edit_{{ car.id }}' value='{{ car.review_date }}' onfocus='(this.type="date")'>
+                                        <input name='vin' id='vin_edit_{{ car.id }}' value='{{ car.vin }}'>
                                         <input type="hidden" name="action" value="car_details" />
                                         <button class="button button_submit">zapisz</button>
                                     </form>
@@ -75,7 +81,7 @@
                             <div class="account-item__car_none">
                                 <div class="account-item__subtitle">Obecnie nie masz żadnych samochodów <br>
                                 dodanych do swojego konta.</div>
-                                <button data-modal="car" class="button_car">+ dodaj auto</button>
+                                <button data-modal="car" class="button_car">+ dodaj kolejne auto</button>
                             </div>
                         {% endfor %}
                     </div>

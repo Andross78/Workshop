@@ -41,8 +41,8 @@ class Car(models.Model):
     model = models.CharField(max_length=64)
     registration = models.CharField(max_length=16)
     year = models.IntegerField()
-    review_date = models.DateTimeField(null=True)
-    insurance = models.DateTimeField(null=True)
+    review_date = models.DateField(null=True)
+    insurance = models.DateField(null=True)
     vin = models.CharField(max_length=20, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='cars')
 
@@ -83,7 +83,7 @@ class Cart(models.Model):
 class OrderedCart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ordered_carts')
     process = models.ManyToManyField(Process, related_name='ordered_carts')
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return "Zamowione uslugi {} ({}) ".format(self.user, self.id)
