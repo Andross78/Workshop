@@ -47,7 +47,8 @@ $(document).ready(function(){
 
     $('.button_car').each(function(i) {
         $(this).on('click', function() {
-            $('#car .modal').fadeIn('slow');
+
+            $('.overlay, #car').fadeIn('slow');
         })
     });
 
