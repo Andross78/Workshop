@@ -144,11 +144,7 @@
 
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 15 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' category_basic.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
 
@@ -171,11 +167,7 @@
 
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 50 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' front_suspension.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="catalog-item">
@@ -197,11 +189,7 @@
 
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 80 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' rear_suspension.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="catalog-item">
@@ -222,11 +210,7 @@
                     <hr>
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 50 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' braking_system.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="catalog-item">
@@ -248,11 +232,7 @@
 
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 70 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' fuel_system.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="catalog-item">
@@ -274,11 +254,7 @@
 
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 50 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' silencer.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="catalog-item">
@@ -300,11 +276,7 @@
 
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 55 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' sterring_system.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="catalog-item">
@@ -326,11 +298,7 @@
 
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 10 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' engine.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="catalog-item">
@@ -352,11 +320,7 @@
 
                     <div class="catalog-item__footer">
                         <div class="catalog-item__price">od 10 zł.</div>
-                        {% if user.is_authenticated %}
                         <a href="{% url 'processes' transmission.id %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% else %}
-                        <a href="{% url 'login_signin' %}"><button class="button button_mini">NAPRAW</button></a>
-                        {% endif %}
                     </div>
                 </div>
            </div>

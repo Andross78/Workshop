@@ -23,6 +23,9 @@ from pancar.views import (
                     LoginSigninView,
                     SignupView,
                     UserLogoutView,
+                    UserListCreateView,
+                    UserDetailView,
+                    ConfirmView,
 )
 from user_account.views import (
                     AccountView,
@@ -45,7 +48,16 @@ urlpatterns = [
     path('reset_password_send/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    #------------DJOSER------------
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+    path('auth/', include('djoser.urls.authtoken')),
+    #---------API ACCOUNTS---------
+    #path("api/accounts/",include("accounts.urls")),
     #------------------------------
+    path("all-profiles",UserListCreateView.as_view(),name="all-profiles"),
+    path("profile/<int:pk>",UserDetailView.as_view(),name="profile"),
+    #---------SERIALIZER-----------
     path('google_login', TemplateView.as_view(template_name='login/index.html')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -65,4 +77,5 @@ urlpatterns = [
     path('processes/<int:category_id>', ProcessesView.as_view(), name='processes'),
     path('basket/', AccountBasketView.as_view(), name='basket'),
     path('order/', OrderMailView.as_view(), name='order'),
+    path('activate/<uid>/<token>/', ConfirmView.as_view(), name='activate'),
     ]

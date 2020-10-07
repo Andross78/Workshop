@@ -14,8 +14,8 @@ class UserLoginForm(forms.ModelForm):
         model = User
         fields = ['username', 'password']
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Username',}),
-            'password': forms.PasswordInput(attrs={'placeholder': 'Password'})
+            'username': forms.TextInput(attrs={'placeholder': 'Email',}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Haslo'})
         }
         labels = {
             "username": "",
