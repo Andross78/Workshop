@@ -20,6 +20,7 @@ class UserUpdateForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'placeholder': 'E-mail'}),
         }
 
+
 class CarCreateForm(forms.ModelForm):
     class Meta:
         model = Car
@@ -42,27 +43,21 @@ class CarCreateForm(forms.ModelForm):
         }
 
 
-class CarUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Car
-        fields = ['brand', 'model', 'registration', 'year', 'insurance', 'review_date']
-        labels = {
-            'brand': '',
-            'model': '',
-            'registration': '',
-            'year':'',
-            'insurance': '',
-            'review_date': '',
-        }
-        widgets = {
-            'brand': forms.TextInput(attrs={'placeholder': 'Marka:'}),
-            'model': forms.TextInput(attrs={'placeholder': 'Model:'}),
-            'registration': forms.TextInput(attrs={'placeholder': 'Nr rejestracyjny:'}),
-            'year': forms.TextInput(attrs={'placeholder': 'Rok produkcji:'}),
-            'insurance': forms.TextInput(attrs={'placeholder': 'Ubezpieczenie:'}),
-            'review_date': forms.TextInput(attrs={'placeholder': 'Przeglad techniczny:'}),
-        }
+class CarUpdateForm(forms.Form):
+    brand = forms.CharField(label='', required=False, widget=forms.TextInput(attrs={'placeholder': 'Marka:'}))
+    model = forms.CharField(label='', required=False, widget=forms.TextInput(attrs={'placeholder': 'Model:'}))
+    registration = forms.CharField(label='', required=False, widget=forms.TextInput(attrs={'placeholder': 'Nr rejestracyjny:'}))
+    year = forms.CharField(label='', required=False, widget=forms.TextInput(attrs={'placeholder': 'Rok produkcji:'}))
+    insurance = forms.CharField(label='', required=False, widget=forms.TextInput(attrs={'placeholder': 'Ubezpieczenie:'}))
+    review_date = forms.DateField(label='', required=False, widget=forms.TextInput(attrs={'placeholder': 'Przeglad techniczny:'}))
+
 
 class OrderMailForm(forms.Form):
     info = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Informacja dla nas'}))
     order_date = forms.CharField(widget=forms.HiddenInput(), initial=datetime.datetime.now())
+
+
+class PasswordChangeForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput())
+    new_password = forms.CharField(widget=forms.PasswordInput(), required=False)
+    repeat_password = forms.CharField(widget=forms.PasswordInput(), required=False)

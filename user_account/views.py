@@ -1,5 +1,6 @@
+from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, reverse, redirect
 from django.views import View
 from django.views.generic import FormView
@@ -7,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from pancar.models import User, Category, Process, Car, Cart, OrderedCart
-from .forms import UserUpdateForm, CarCreateForm, OrderMailForm
+from .forms import UserUpdateForm, CarCreateForm, CarUpdateForm, OrderMailForm, PasswordChangeForm
 
 
 class AccountView(View):
@@ -18,8 +19,9 @@ class AccountView(View):
 
 class AccountProfileView(View):
     form_class_car = CarCreateForm
-    form_class_car_update = CarCreateForm
+    form_class_car_update = CarUpdateForm
     form_class_user = UserUpdateForm
+    form_class_password = PasswordChangeForm
     template_name = 'account/profile.html'
 
     def get(self, request):
@@ -33,47 +35,33 @@ class AccountProfileView(View):
         form_car_update = self.form_class_car_update
         form_car = self.form_class_car
         form_user = self.form_class_user(initial=initial_user_data)
+        form_password = self.form_class_password
         context = {
             'form_car': form_car,
             'form_user': form_user,
-            'form_car_update': [form_car_update(instance=car) for car in user.cars.all()],
+            # 'form_car_update': [form_car_update(instance=car) for car in user.cars.all()],
+            'form_car_update': form_car_update,
+            'form_password': form_password,
         }
         return render(request, self.template_name, context)
 
-    # def post(self, request, *args, **kwargs):
-    #     form_user = self.form_class_user(request.POST)
-    #     form_car = self.form_class_car(request.POST)
-    #     # form_car_update = self.form_class_car(request.POST)
-    #     if form_user.is_valid():
-    #         user = self.request.user
-    #         user.first_name = request.POST['first_name']
-    #         user.last_name = request.POST['last_name']
-    #         user.email = request.POST['email']
-    #         user.phone = request.POST['phone']
-    #         if user.first_name or user.last_name or user.email or user.phone:
-    #             user.save()
-    #             return render(request, self.template_name)
-    #     if form_car.is_valid():
-    #         Car.objects.create(
-    #             brand=form_car.cleaned_data['brand'],
-    #             model=form_car.cleaned_data['model'],
-    #             registration=form_car.cleaned_data['registration'],
-    #             year=form_car.cleaned_data['year'],
-    #             insurance=form_car.cleaned_data['insurance'],
-    #             review_date=form_car.cleaned_data['review_date'],
-    #             owner=User.objects.get(pk=self.request.user.id)
-    #         )
-    #         return render(request, self.template_name)
-        # if form_car_update.is_valid():
-        #     pass
-            # car = Car.objects.get(owner=self.request.user)
-            # car.brand = form_car.cleaned_data['brand']
-            # car.model = form_car.cleaned_data['model']
-            # car.registration = form_car.cleaned_data['registration']
-            # car.year = form_car.cleaned_data['year']
-            # car.insurance = form_car.cleaned_data['insurance']
-            # car.review_date = form_car.cleaned_data['review_date']
-            # return render(request, self.success_url)
+    def post(self, request):
+        form_password = self.form_class_password(request.POST)
+        if form_password.is_valid():
+            user = self.request.user
+            password = form_password.cleaned_data['password']
+            new_password = form_password.cleaned_data['new_password']
+            repeat_password = form_password.cleaned_data['repeat_password']
+            if authenticate(username=user.email, password=password):
+                if new_password and repeat_password and new_password == repeat_password:
+                    self.request.user.set_password(new_password)
+                    self.request.user.save()
+                    user = authenticate(username=user.email, password=new_password)
+                    if user:
+                        login(self.request, user)
+            return HttpResponseRedirect(reverse_lazy('profile'))
+        else :
+            return HttpResponse(form_password.errors)
 
 class UserUpdateView(UpdateView):
     model = User

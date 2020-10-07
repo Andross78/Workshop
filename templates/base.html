@@ -538,12 +538,10 @@
             <div class="modal__close">&times;</div>
             <div class="modal__subtitle">Prosimy o wypełnieniu formularzu</div>
             <div class="modal__descr">oddzwonimy w ciągu 10 minut</div>
-            <form class="feed-form feed-form_mt25" action="#">
-                <input name="name" placeholder="Imię" type="text">
-                <input name="phone" placeholder="Telefon">
-                <input name="email" placeholder="E-mail" type="email">
-
-                <button class="button button_submit">Pozostawić danę</button>
+            <form class="feed-form feed-form_mt25" action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="button button_submit">Pozostawić danę</button>
             </form>
         </div>
 

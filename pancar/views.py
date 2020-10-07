@@ -1,14 +1,14 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 
 
-from .forms import MessageForm, UserCreateForm, UserLoginForm
-from .models import Car, Process, Category
+from .forms import MessageForm, UserCreateForm
+from .models import Category
 
 
 class ProcessView(View):
@@ -55,6 +55,7 @@ class ProcessView(View):
             'transmission': transmission,
         }
         return render(request, 'base.html', context)
+
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
@@ -62,15 +63,13 @@ class ProcessView(View):
             name = form.cleaned_data['name']
             phone = form.cleaned_data['phone']
             message = f'Wiadomosc od {name}\n {phone}\n'
-
-            message += form.cleaned_data['info']
+            info = form.cleaned_data['info']
+            message += info
             send_mail(title,
                       message,
                       'wdsasha22@gmail.com',
                       ['wdsasha22@gmail.com'])
-
             return HttpResponseRedirect(reverse_lazy('index'))
-
 
 class LoginSigninView(LoginView):
     template_name = 'pancar/login_v_3.html'

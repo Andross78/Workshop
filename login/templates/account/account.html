@@ -16,9 +16,9 @@
             </a>
             <div class="header__buttons">
                 <a href="{% url 'basket' %}">
-                    <button class="button button_login">kosz</button>
+                    <button class="button button_login">koszyk</button>
                 </a>
-                <a href="{% url 'logout' %}?next={{ request.get_full_path }}">
+                <a href="{% url 'logout' %}">
                     <button class="button button_logout"></button>
                 </a>
             </div>

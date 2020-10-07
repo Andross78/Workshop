@@ -46,7 +46,10 @@ $(document).ready(function(){
     });
 
     $('[data-modal=car]').on('click', function() {
-        $('.overlay, #car').fadeIn('slow');
+        $('#car').fadeIn('slow');
+    });
+    $('[data-modal=car_details]').on('click', function() {
+        $('#car_details').fadeIn('slow');
     });
 
     // Smooth scroll and page up

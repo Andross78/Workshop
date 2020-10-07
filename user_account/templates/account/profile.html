@@ -15,8 +15,8 @@
             <a href="{% url 'servises' %}" class="account__tab "><div>uslugi</div></a>
         </div>
     </div>
-    <div class="overlay">
-        <div class="modal" id="car">
+    <div class="overlay" id="car">
+        <div class="modal" >
             <div class="modal__close">&times;</div>
             <div class="modal__subtitle">Dodaj nowy samochód</div>
             <form class="feed-form feed-form_mt25" action="{% url 'car_create' %}" method="POST">
@@ -40,8 +40,8 @@
                     <div class="account-item__car" >
                         <h2 class="account-item__title account-item__title_car">Moje auta</h2>
                         {% for car in request.user.cars.all %}
-                            <div class="overlay">
-                                <div class="modal" id="car_details_{{  car.id }}">
+                            <div class="overlay" id="car_details">
+                                <div class="modal">
                                     <div class="modal__close">&times;</div>
                                     <div class="modal__subtitle">Edytuj samochód</div>
                                     <form class="feed-form feed-form_mt25" action="{% url 'car_details'  car.id %}" method="POST">
@@ -52,6 +52,15 @@
                                     </form>
                                 </div>
                             </div>
+{#                            <div class="modal" id="car-edit">#}
+{#                                <div class="modal__close">&times;</div>#}
+{#                                <div class="modal__subtitle">Edytuj</div>#}
+{#                                <form class="feed-form feed-form_mt25" method="POST" action="{% url 'car_details'  car.id %}">#}
+{#                                    {% csrf_token %}#}
+{#                                    {{ form_car_update }}#}
+{#                                    <button class="button button_submit">zapisz</button>#}
+{#                                </form>#}
+{#                            </div>#}
                             <div class="account-item__wrapper">
                             <div class="account-item__img">
                                 <img src="{% static 'icons/user/car_logo.png' %}" alt="zdjęcie marki auta">
@@ -82,13 +91,15 @@
                     </div>
                     <div class="account-item__password">
                         <h2 class="account-item__title">Zmiana hasła</h2>
-                    <form class="account-form account-form__reset_pass" action="#">
-                        <input name="old_password" required placeholder="Hasło" type="text">
+                    <form class="account-form account-form__reset_pass" action="{% url 'profile' %}" method="post">
+                        {% csrf_token %}
+                        <input type='password' name="password" required placeholder="Hasło">
                         <input type="text" style="visibility: hidden;">
-                        <input name="new_password" required placeholder="Nowe hasło" type="text">
-                        <input name="repeat_password" required placeholder="Potwierdź hasło" type="text">
+                        <input type='password' name="new_password" required placeholder="Nowe hasło">
+                        <input type='password' name="repeat_password" required placeholder="Potwierdź hasło">
+                        <button type='submit' class="button button_save">zapisz zmiany</button>
                     </form>
-                    <button class="button button_save">zapisz zmiany</button>
+
                     </div>
                 </div>
             </div>
