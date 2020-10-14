@@ -165,7 +165,7 @@ class AccountBasketView(LoginRequiredMixin, View):
         user = self.request.user
         cart = Cart.objects.get(user=user)
         cart.process.remove(int(request.POST['pid']))
-        processes = Process.objects.filter(carts=cart)
+        # processes = Process.objects.filter(carts=cart)
 
         return HttpResponseRedirect(reverse(self.success_url))
 
