@@ -2,7 +2,7 @@ Django==3.1
 django-allauth==0.42.0
 django-sslserver==0.22
 django-templated-mail==1.1.1
-djangorestframework==3.11.1
+djangorestframework==3.11.2
 djangorestframework-simplejwt==4.4.0
 djoser==2.0.3
 ipython==7.17.0
