@@ -16,7 +16,7 @@ defer==1.0.6
 defusedxml==0.6.0
 distro==1.4.0
 distro-info===0.23ubuntu1
-Django==3.1
+Django==3.1.12
 django-allauth==0.42.0
 django-sslserver==0.22
 django-templated-mail==1.1.1
